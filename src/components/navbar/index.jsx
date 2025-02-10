@@ -82,6 +82,7 @@ display: flex;
 justify-content: space-between;
 align-items:center;
 background-color:#e5e5e5;
+margin-bottom:6rem;
 padding: 0 1.2rem;
 
 a{
@@ -115,6 +116,7 @@ font-size: 3rem;
 const Title = styled.h1`
 
 min-width:13rem;
+font-size:2rem;
 
 
 `
@@ -122,6 +124,7 @@ min-width:13rem;
 const ListItem = styled.li`
 
 list-style-type:none;
+font-size: 1.2rem;
 
 `
 
