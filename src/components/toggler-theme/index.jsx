@@ -1,19 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { PiSunFill } from "react-icons/pi";
-// import { PiMoonFill } from "react-icons/pi";
+import { PiMoonFill } from "react-icons/pi";
 import { ThemeContext } from "../context";
 import { themes } from "../context";
 
 const TogglerTheme = () => {
 
-    const {theme,setTheme} = useContext(ThemeContext);
+    const { theme, setTheme } = useContext(ThemeContext);
+    const [icon, seticon] = useState(theme === themes.light ? 'light' : 'dark')
+
+
+    function toggler() {
+
+        theme == themes.light ? setTheme(themes.dark) : setTheme(themes.light);
+        icon == 'light' ? seticon('dark') : seticon('light');
+
+    }
 
     return (
 
-        <Toggler>
+        <Toggler onClick={() => {  toggler() }} >
 
-            <PiSunFill />
+            {icon == 'light' ? <PiSunFill /> : <PiMoonFill />}
 
         </Toggler>
 
@@ -30,14 +39,14 @@ align-items:center;
 width:2rem;
 height:2rem;
 border-radius:100%;
-color:#000;
+color:${(props)=>props.theme.fontColor};
 cursor:Pointer;
 
 &:hover{
 
 transition: 0.5s ease-in-out;
-background-color:#000;
-color:#fff;
+background-color:${(props)=>props.theme.backgroundToggler};
+color:${(props)=>props.theme.fontAccentColorToggler};
 
 }
 

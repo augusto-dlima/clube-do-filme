@@ -12,9 +12,9 @@ export const themes = {
         fontAccentColor: '',
         fontColorTitle: '',
         colorLogo: '',
-        backgroundHeader: '',
+        backgroundHeader: '#e5e5e5',
         backgroundBody: '#fff',
-        backgroundTogler: '#000',
+        backgroundToggler: '#000',
         fontColorToggler: '#000',
         fontAccentColorToggler: '#fff'
 
@@ -29,9 +29,9 @@ export const themes = {
         fontAccentColor: '',
         fontColorTitle: '',
         colorLogo: '',
-        backgroundHeader: '',
+        backgroundHeader: '#000',
         backgroundBody: '#000',
-        backgroundTogler: '#fff',
+        backgroundToggler: '#fff',
         fontColorToggler: '#fff',
         fontAccentColorToggler: '#000'
 

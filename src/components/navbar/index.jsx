@@ -81,14 +81,15 @@ height: 6rem;
 display: flex;
 justify-content: space-between;
 align-items:center;
-background-color:#e5e5e5;
+background-color:${(props)=>props.theme.backgroundHeader};
+color:${(props)=>props.theme.fontColor};
 margin-bottom:6rem;
 padding: 0 1.2rem;
 
 a{
 
 text-decoration:none;
-color:#000;
+color:${(props)=>props.theme.fontColor};
 
 }
 
