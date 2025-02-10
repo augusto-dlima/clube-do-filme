@@ -1,11 +1,66 @@
 import React from "react";
 import styled from "styled-components";
+import { PiFilmSlateLight } from "react-icons/pi";
+import TogglerTheme from "../toggler-theme";
+import { Link } from "react-router-dom";
 
-const NavBar = ()=>{
+const NavBar = () => {
 
-    return(
+    return (
 
         <Header>
+
+
+
+            <Link to={'/'}>
+
+                <Logo>
+
+                    <PiFilmSlateLight />
+
+
+                    <Title>Clube do filme</Title>
+
+
+                </Logo>
+
+            </Link>
+
+
+            <Nav>
+
+                <ListNav>
+
+
+                    <Link to={'/genres'}>
+
+                        <ListItem>Categorias</ListItem>
+
+                    </Link>
+
+
+                    <Link to={'/favorites'}>
+
+                        <ListItem>favoritos</ListItem>
+
+                    </Link>
+
+
+                    <Link to={'/search'}>
+
+                        <ListItem>Buscar</ListItem>
+
+                    </Link>
+
+
+
+                </ListNav>
+
+                <TogglerTheme />
+
+            </Nav>
+
+
 
 
 
@@ -22,10 +77,77 @@ const NavBar = ()=>{
 const Header = styled.header`
 
 width:100vw;
-min-height: 6rem;
+height: 6rem;
+display: flex;
+justify-content: space-between;
+align-items:center;
 background-color:#e5e5e5;
+padding: 0 1.2rem;
+
+a{
+
+text-decoration:none;
+color:#000;
+
+}
 
 `
+
+const Logo = styled.div`
+
+height:100%;
+// background-color:blue;
+display: flex;
+align-items:center;
+gap:1rem;
+padding: 0 1.2rem;
+
+
+
+svg{
+
+font-size: 3rem;
+
+}
+
+`
+
+const Title = styled.h1`
+
+min-width:13rem;
+
+
+`
+
+const ListItem = styled.li`
+
+list-style-type:none;
+
+`
+
+const ListNav = styled.ul`
+
+display: flex;
+gap: 2rem;
+padding: 0 1.2rem;
+
+
+`
+
+const Nav = styled.nav`
+
+
+display:flex;
+// background-color:blue;
+height:100%;
+align-items:center;
+gap: 2rem;
+padding: 0 1.2rem;
+
+
+
+`
+
 
 
 export default NavBar
