@@ -98,7 +98,6 @@ color:${(props)=>props.theme.fontColor};
 const Logo = styled.div`
 
 height:100%;
-// background-color:blue;
 display: flex;
 align-items:center;
 gap:1rem;
@@ -142,7 +141,6 @@ const Nav = styled.nav`
 
 
 display:flex;
-// background-color:blue;
 height:100%;
 align-items:center;
 gap: 2rem;
