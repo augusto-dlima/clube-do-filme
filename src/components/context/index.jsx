@@ -9,14 +9,17 @@ export const themes = {
 
 
         fontColor: '#000',
-        fontAccentColor: '',
+        fontAccentColor: '#FF0033',
         fontColorTitle: '',
         colorLogo: '',
         backgroundHeader: '#e5e5e5',
         backgroundBody: '#fff',
-        backgroundToggler: '#000',
+        backgroundToggler: '#fff',
         fontColorToggler: '#000',
-        fontAccentColorToggler: '#fff'
+        fontAccentColorToggler: '#FF0033',
+        title: 'lato-bold',
+        text: 'lato-regular',
+        box:'#000'
 
 
 
@@ -26,14 +29,17 @@ export const themes = {
 
 
         fontColor: '#fff',
-        fontAccentColor: '',
+        fontAccentColor: '#1A98FF',
         fontColorTitle: '',
         colorLogo: '',
-        backgroundHeader: '#000',
+        backgroundHeader: '#141920',
         backgroundBody: '#000',
         backgroundToggler: '#fff',
         fontColorToggler: '#fff',
-        fontAccentColorToggler: '#000'
+        fontAccentColorToggler: '#1A98FF',
+        title: 'ember-bold',
+        text: 'ember-regular',
+        box:'#fff'
 
 
     }

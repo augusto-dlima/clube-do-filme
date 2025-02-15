@@ -22,7 +22,7 @@ const TogglerTheme = () => {
 
         <Toggler onClick={() => {  toggler() }} >
 
-            {icon == 'light' ? <PiSunFill /> : <PiMoonFill />}
+            {icon == 'light' ? <PiMoonFill /> : <PiSunFill />}
 
         </Toggler>
 

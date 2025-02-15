@@ -1,0 +1,19 @@
+@font-face {
+    font-family: ember-regular;
+    src: url('../fonts/AmazonEmber_Rg.ttf');
+}
+
+@font-face {
+    font-family: ember-bold;
+    src: url('../fonts/AmazonEmber_Bd.ttf');
+}
+
+@font-face {
+    font-family: lato-regular ;
+    src: url('../fonts/Lato-Regular.woff');
+}
+
+@font-face {
+    font-family: lato-bold;
+    src: url('../fonts/Lato-Bold.woff');
+}

@@ -12,6 +12,14 @@ box-sizing:border-box;
 
 }
 
+body{
+
+transition: 0.5s ease-in-out;
+background-color: ${(props)=>props.theme.backgroundBody};
+overflow-x:hidden;
+
+}
+
 
 
 `
