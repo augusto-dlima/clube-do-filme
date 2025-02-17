@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createContext } from "react";
+import { getTheme } from "../../js/service";
 
 
 export const themes = {
@@ -17,8 +18,8 @@ export const themes = {
         backgroundToggler: '#fff',
         fontColorToggler: '#000',
         fontAccentColorToggler: '#FF0033',
-        title: 'lato-bold',
-        text: 'lato-regular',
+        title: 'ember-bold',
+        text: 'ember-regular',
         box:'#000'
 
 
@@ -32,8 +33,8 @@ export const themes = {
         fontAccentColor: '#1A98FF',
         fontColorTitle: '',
         colorLogo: '',
-        backgroundHeader: '#141920',
-        backgroundBody: '#000',
+        backgroundHeader: '#000',
+        backgroundBody: '#141920',
         backgroundToggler: '#fff',
         fontColorToggler: '#fff',
         fontAccentColorToggler: '#1A98FF',
@@ -54,7 +55,9 @@ export const ThemeContext = createContext({});
 
 const ThemeProvider = (props) => {
 
-    const [theme,setTheme] = useState(themes.light);
+    const localTheme = getTheme();
+
+    const [theme,setTheme] = useState(localTheme==='dark'?themes.dark: themes.light);
 
     return (
 

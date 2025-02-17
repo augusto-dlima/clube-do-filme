@@ -4,6 +4,7 @@ import { PiSunFill } from "react-icons/pi";
 import { PiMoonFill } from "react-icons/pi";
 import { ThemeContext } from "../context";
 import { themes } from "../context";
+import { setThemeLocal } from "../../js/service";
 
 const TogglerTheme = () => {
 
@@ -15,6 +16,7 @@ const TogglerTheme = () => {
 
         theme == themes.light ? setTheme(themes.dark) : setTheme(themes.light);
         icon == 'light' ? seticon('dark') : seticon('light');
+        icon == 'light' ? setThemeLocal('dark') : setThemeLocal('light');
 
     }
 

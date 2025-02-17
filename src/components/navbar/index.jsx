@@ -84,7 +84,7 @@ align-items:center;
 background-color:${(props)=>props.theme.backgroundHeader};
 color:${(props)=>props.theme.fontColor};
 box-shadow: 1px 1px 10px 1px ${(props)=>props.theme.box};
-margin-bottom:6rem;
+margin-bottom:0.1rem;
 padding: 0 1.2rem;
 transition: 0.5s ease-in-out;
 

@@ -37,7 +37,7 @@ function getData() {
         else { getMovies(); }
     }
     else { getGenres(); }
-    
+
 }
 
 async function getGenres() {
@@ -78,12 +78,37 @@ async function getMovies() {
         allMovies.push(...json.results);
     }
 
-    allMovies.forEach(element => {
+    allMovies.forEach((element, index) => {
 
         let objectMovie = { ...movie };
 
-        element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
-        element.overview ? movies.push(objectMovie) : '';
+        if (index === 0) {
+
+            element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
+
+            element.overview ? movies.push(objectMovie) : '';
+
+        }
+
+        else {
+
+            const validation = movies.filter((movie) => movie.id === element.id);
+
+            if (validation.length <= 0) {
+
+                element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
+
+                element.overview ? movies.push(objectMovie) : '';
+
+
+            }
+
+
+
+
+
+        }
+
 
     })
 
@@ -112,5 +137,36 @@ function setGenreMovies(genres, movies) {
 
 }
 
+function getDataGenre(id,response) {
 
-export default getData;
+    const genres = JSON.parse(localStorage.getItem('genres'));
+    const genre = genres.filter(genre => genre.id == id);
+    
+    if(response === 'name')  return genre[0].name;
+    
+    return genre[0];
+
+
+
+}
+
+function getTheme(){
+
+
+    const theme =  JSON.parse(localStorage.getItem('theme'));
+
+    if(theme) return theme;
+
+    return 'dark';
+
+
+}
+
+function setThemeLocal(newTheme){
+
+    localStorage.setItem('theme',JSON.stringify(newTheme));
+
+}
+
+
+export { getData, getDataGenre, getTheme, setThemeLocal };
