@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import styled from 'styled-components'
 // import { useState, useEffect } from "react";
-import PageConfig from "../../components/page-config";
+import PageConfig from "../../styles/page-config/index.jsx";
 import Card from "../../components/card";
 import {getData} from "../../js/service.js";
 import Loading from "../../components/load";
@@ -10,12 +10,14 @@ import styled from "styled-components";
 
 const MovieList = ({ data }) => {
 
+    scrollTo(0,0);
+
 
     return (
 
-        <>
+        <PageConfig button={true}>
 
-            <Title>Filmes</Title>
+            <Title>Procurando algo para assistir? Confira os últimos lançamentos e descubra novas histórias!</Title>
 
             {
 
@@ -35,7 +37,7 @@ const MovieList = ({ data }) => {
                 })
             }
 
-        </>
+        </PageConfig>
 
     )
 }
@@ -75,11 +77,8 @@ const Home = () => {
 
         <>
 
-            <PageConfig>
 
                 {dataMovies ? <MovieList data={dataMovies} /> : <Loading />}
-
-            </PageConfig>
 
 
         </>
@@ -93,11 +92,13 @@ const Title = styled.h1`
 
 width:100vw;
 padding: 0 3rem;
-font-size:2rem;
+font-size:1.7rem;
 transition: 0.5s ease-in-out;
-font-family: ${(props)=>props.theme.title};
+font-family: ${(props)=>props.theme.titleList};
 color:${(props)=>props.theme.fontAccentColor};
-margin-bottom:2rem;
+margin-bottom:5rem;
+
+
 
 `
 

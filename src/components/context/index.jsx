@@ -9,7 +9,7 @@ export const themes = {
     light: {
 
 
-        fontColor: '#000',
+        fontColor: '#141920',
         fontAccentColor: '#FF0033',
         fontColorTitle: '',
         colorLogo: '',
@@ -20,7 +20,9 @@ export const themes = {
         fontAccentColorToggler: '#FF0033',
         title: 'ember-bold',
         text: 'ember-regular',
-        box:'#000'
+        box: '#000',
+        titleLogo: 'logo',
+        titleList: 'list'
 
 
 
@@ -40,7 +42,9 @@ export const themes = {
         fontAccentColorToggler: '#1A98FF',
         title: 'ember-bold',
         text: 'ember-regular',
-        box:'#fff'
+        box: '#000',
+        titleLogo: 'logo',
+        titleList: 'list'
 
 
     }
@@ -57,12 +61,12 @@ const ThemeProvider = (props) => {
 
     const localTheme = getTheme();
 
-    const [theme,setTheme] = useState(localTheme==='dark'?themes.dark: themes.light);
+    const [theme, setTheme] = useState(localTheme === 'dark' ? themes.dark : themes.light);
 
     return (
 
 
-        <ThemeContext.Provider value={{theme,setTheme}}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
 
 
             {props.children}

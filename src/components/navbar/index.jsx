@@ -84,8 +84,8 @@ align-items:center;
 background-color:${(props)=>props.theme.backgroundHeader};
 color:${(props)=>props.theme.fontColor};
 box-shadow: 1px 1px 10px 1px ${(props)=>props.theme.box};
-margin-bottom:0.1rem;
-padding: 0 1.2rem;
+margin-bottom:0.2rem;
+padding: 0 3.5rem;
 transition: 0.5s ease-in-out;
 
 
@@ -103,7 +103,7 @@ const Logo = styled.div`
 height:100%;
 display: flex;
 align-items:center;
-gap:1rem;
+gap:0.2rem;
 padding: 0 1.2rem;
 
 
@@ -111,7 +111,8 @@ padding: 0 1.2rem;
 svg{
 
 transition: 0.5s ease-in-out;
-font-size: 3rem;
+font-size: 2.5rem;
+color:${(props)=>props.theme.fontAccentColor};
 
 }
 
@@ -120,9 +121,10 @@ font-size: 3rem;
 const Title = styled.h1`
 
 min-width:13rem;
-font-size:2rem;
+font-size:1.5rem;
 transition: 0.5s ease-in-out;
-font-family: ${(props)=>props.theme.title};
+font-family: ${(props)=>props.theme.titleLogo};
+color:${(props)=>props.theme.fontAccentColor};
 
 
 `
@@ -130,13 +132,17 @@ font-family: ${(props)=>props.theme.title};
 const ListItem = styled.li`
 
 list-style-type:none;
-font-size: 1.2rem;
-font-family: ${(props)=>props.theme.text};
+font-size: 1rem;
+padding:0.5rem;
+font-family: ${(props)=>props.theme.titleList};
 transition: 0.5s ease-in-out;
 
 &:hover{
 
-color: ${(props)=>props.theme.fontAccentColor};
+color: #fff;
+background-color:${(props)=>props.theme.fontAccentColor};
+border-radius:0.5rem;
+box-shadow:1px 1px 1px 1px #fff;
 
 }
 

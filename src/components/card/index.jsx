@@ -30,7 +30,7 @@ const Card = (props) => {
 
                             return (
 
-                                <Link to={`/${genre}`}>
+                                <Link to={`/genre/${genre}`}>
                                     <p key={genre}>{getDataGenre(genre,'name')}</p>
                                 </Link>
 
@@ -111,6 +111,7 @@ gap:2rem;
 text-align:justify;
 border-radius:1rem;
 transition: 0.5 ease-in-out;
+z-index:1;
 
 
 

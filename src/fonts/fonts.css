@@ -17,3 +17,13 @@
     font-family: lato-bold;
     src: url('../fonts/Lato-Bold.woff');
 }
+
+@font-face {
+    font-family: logo;
+    src: url('../fonts/blackout.2am.ttf');
+}
+
+@font-face {
+    font-family: list;
+    src: url('../fonts/raleway.bold.ttf');
+}

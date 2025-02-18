@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getDataGenre } from "../../js/service";
 import styled from "styled-components";
 import Card from "../../components/card";
-import PageConfig from "../../components/page-config";
+import PageConfig from "../../styles/page-config";
 
 
 const Genre = (props) => {
@@ -16,10 +16,10 @@ const Genre = (props) => {
 
         <DivGenre>
 
-            <PageConfig>
+            <PageConfig button={true}>
 
 
-                <Title>{genre.name}</Title>
+                <Title>Lista de filmes da categoria : {genre.name}</Title>
 
                 {
 

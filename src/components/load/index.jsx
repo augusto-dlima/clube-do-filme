@@ -1,4 +1,5 @@
 import React from "react";
+import PageConfig from "../../styles/page-config";
 
 import { RiLoader3Line } from "react-icons/ri";
 import styled, { keyframes } from "styled-components";
@@ -13,6 +14,8 @@ const Loading = () => {
 
     return (
 
+        <PageConfig>
+
         <Load>
 
             <RiLoader3Line />
@@ -25,14 +28,19 @@ const Loading = () => {
                     sequence={[
 
                        'Bem-vindo ao clube do filme!',
-                       3000,                     
+                       2000,                     
                        
                        'Na primeira visita, pode demorar um pouco para carregar as informações, mas não se preocupe, depois disso, tudo fica mais rápido!',
 
-                       3000,
+                       2000,
+
+                  'Esse projeto é um trabalho de estudo, então, por favor, não hesite em explorar e me dar feedback!',
+
+                       2000,
+            
             
                     ]}
-                    speed={10}
+                    speed={45}
                     style={{ fontSize: '2rem' }}
                     repeat={0}
                 />
@@ -42,6 +50,8 @@ const Loading = () => {
 
 
         </Load>
+
+        </PageConfig>
 
 
     )
@@ -69,7 +79,7 @@ gap:5rem;
 padding:5rem;
 text-align:justify;
 color: ${(props) => props.theme.fontColor};
-font-family: ${(props) => props.theme.text};
+font-family: ${(props) => props.theme.titleList};
 
 svg{
 
