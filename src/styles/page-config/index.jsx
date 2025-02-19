@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { getData } from "../../js/service";
+import { themes } from "../../components/context";
 
 
 
@@ -55,10 +56,10 @@ gap:1rem;
 padding: 6rem 2rem;
 transition: 0.5s ease-in-out;
 background-color: ${(props) => props.theme.backgroundBody};
-// background-image: radial-gradient(circle, #141920, #141920, #141920, #141920, #141920);
 color: ${(props) => props.theme.fontColor};
 position: relative;
 z-index:1;
+
 
 `
 

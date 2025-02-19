@@ -28,20 +28,20 @@ const Loading = () => {
                     sequence={[
 
                        'Bem-vindo ao clube do filme!',
-                       2000,                     
+                       3000,                     
                        
                        'Na primeira visita, pode demorar um pouco para carregar as informações, mas não se preocupe, depois disso, tudo fica mais rápido!',
 
-                       2000,
+                       3000,
 
                   'Esse projeto é um trabalho de estudo, então, por favor, não hesite em explorar e me dar feedback!',
 
-                       2000,
+                       3000,
             
             
                     ]}
-                    speed={45}
-                    style={{ fontSize: '2rem' }}
+                    speed={30}
+                    style={{ fontSize: '1.5rem' }}
                     repeat={0}
                 />
 
@@ -76,7 +76,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 gap:5rem;
-padding:5rem;
+padding:0 15rem;
 text-align:justify;
 color: ${(props) => props.theme.fontColor};
 font-family: ${(props) => props.theme.titleList};

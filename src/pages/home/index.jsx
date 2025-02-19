@@ -95,11 +95,8 @@ padding: 0 3rem;
 font-size:1.7rem;
 transition: 0.5s ease-in-out;
 font-family: ${(props)=>props.theme.titleList};
-color:${(props)=>props.theme.fontAccentColor};
+color:${(props)=>props.theme.fontColor};
 margin-bottom:5rem;
-
-
-
 `
 
 export default Home

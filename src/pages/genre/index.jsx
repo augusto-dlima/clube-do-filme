@@ -58,7 +58,7 @@ padding: 0 3rem;
 font-size:2rem;
 transition: 0.5s ease-in-out;
 font-family: ${(props) => props.theme.title};
-color:${(props) => props.theme.fontAccentColor};
+color:${(props) => props.theme.fontColor};
 margin-bottom:2rem;
 
 `
