@@ -11,8 +11,14 @@ import { getDataGenre, getFavoriteMovies, setFavoriteMovies } from "../../js/ser
 
 const MovieDetails = () => {
 
+    scrollTo(0, 0);
+
+    
+    
     const movie = getMovie(useParams().id);
 
+    console.log(movie)
+    
     const [validation, setValidation] = useState(getFavoriteMovies(movie.id))
 
     useEffect(()=>{
@@ -23,11 +29,10 @@ const MovieDetails = () => {
 
     })
 
-    scrollTo(0, 0);
 
     function configButton() {
 
-        setFavoriteMovies(movie)
+        setFavoriteMovies(movie);
         setValidation(validation?false:true);
 
     }

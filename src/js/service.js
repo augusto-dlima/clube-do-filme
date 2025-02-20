@@ -182,16 +182,29 @@ function getFavoriteMovies(id) {
 
     const movies = JSON.parse(localStorage.getItem('favoriteMovies'));
 
-    if(id){
+    if (movies) {
 
-        if( movies.filter( (m) => m.id == id).length) return true;
+        if (id) {
 
-        return false;
+            if (movies.filter((m) => m.id == id).length) return true;
 
+            return false;
+
+        }
+
+        else {
+
+            return movies;
+
+        }
 
     }
 
-    if (movies) return movies;
+    else{
+
+        return false;
+    }
+
 
 
 }
@@ -206,27 +219,27 @@ function setFavoriteMovies(item) {
         const movies = [...favoriteMovies];
         const movie = favoriteMovies.filter((m) => m.id == item.id);
 
-        if(!movie.length){
+        if (!movie.length) {
 
             movies.push(item);
             localStorage.setItem('favoriteMovies', JSON.stringify(movies));
 
         }
 
-        else{
+        else {
 
             console.log(movies);
 
             let index = false;
-            
-            movies.map((movie,position)=>{
 
-                if(movie.id == item.id) index = position;
-    
+            movies.map((movie, position) => {
+
+                if (movie.id == item.id) index = position;
+
 
             })
 
-            movies.splice(index,1);
+            movies.splice(index, 1);
             localStorage.setItem('favoriteMovies', JSON.stringify(movies));
 
 
@@ -241,7 +254,9 @@ function setFavoriteMovies(item) {
 
         movies.push(item);
 
-        BsCcCircle
+        localStorage.setItem('favoriteMovies', JSON.stringify(movies));
+
+
 
     }
 

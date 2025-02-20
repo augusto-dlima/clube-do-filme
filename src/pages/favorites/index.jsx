@@ -41,11 +41,13 @@ const Favorites = () => {
 
     const movies = getFavoriteMovies();
 
+    console.log(movies);
+
     return (
 
         <>
 
-            { movies.length> 0 ? <FavoriteList movies={movies} /> : <NotFound />}
+            { movies? <FavoriteList movies={movies} /> : <NotFound />}
 
         </>
 
