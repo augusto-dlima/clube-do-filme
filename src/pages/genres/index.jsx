@@ -10,7 +10,7 @@ const GenreList = ({ genres }) => {
 
     return (
 
-        <PageConfig button={true}>
+        <PageConfig button={true} direction={'center'}>
 
             {
 
@@ -18,13 +18,13 @@ const GenreList = ({ genres }) => {
 
                     return (
 
-                        <>
+                        <Section key={genre.id}>
 
                             <Title>Filmes de {genre.name}</Title>
 
                             <Carousel movies={genre.movies} />
 
-                        </>
+                        </Section>
 
                     )
 
@@ -71,6 +71,13 @@ transition: 0.5s ease-in-out;
 font-family: ${(props) => props.theme.title};
 color:${(props) => props.theme.fontColor};
 margin:5rem 0;
+`
+
+const Section = styled.section`
+
+width:100%;
+height:100%;
+
 `
 
 export default Genres

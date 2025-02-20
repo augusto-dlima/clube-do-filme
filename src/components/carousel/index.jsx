@@ -13,8 +13,6 @@ import 'swiper/css/scrollbar';
 
 const Carousel = ({ movies }) => {
 
-    console.log(movies.length);
-
     let perview;
 
     movies.length >2 ? perview = 3 : perview = movies.length
@@ -36,9 +34,9 @@ const Carousel = ({ movies }) => {
 
                 return (
 
-                    <SwiperSlide>
+                    <SwiperSlide key={movie.id}>
 
-                        <Card title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                        <Card  id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
 
                     </SwiperSlide>
 

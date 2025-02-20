@@ -1,3 +1,4 @@
+import { BsCcCircle } from "react-icons/bs";
 import { genre, movie } from "./objects.js";
 ;
 const options = {
@@ -118,6 +119,15 @@ async function getMovies() {
 
 }
 
+function getMovie(id) {
+
+    const movies = JSON.parse(localStorage.getItem('movies'));
+
+    const movie = movies.filter(movie => movie.id == id)
+
+    return movie[0];
+}
+
 function setGenreMovies(genres, movies) {
     genres.forEach(genre => {
         movies.forEach(movie => {
@@ -137,36 +147,107 @@ function setGenreMovies(genres, movies) {
 
 }
 
-function getDataGenre(id,response) {
+function getDataGenre(id, response) {
 
     const genres = JSON.parse(localStorage.getItem('genres'));
     const genre = genres.filter(genre => genre.id == id);
-    
-    if(response === 'name')  return genre[0].name;
-    
+
+    if (response === 'name') return genre[0].name;
+
     return genre[0];
 
 
 
 }
 
-function getTheme(){
+function getTheme() {
 
 
-    const theme =  JSON.parse(localStorage.getItem('theme'));
+    const theme = JSON.parse(localStorage.getItem('theme'));
 
-    if(theme) return theme;
+    if (theme) return theme;
 
     return 'dark';
 
 
 }
 
-function setThemeLocal(newTheme){
+function setThemeLocal(newTheme) {
 
-    localStorage.setItem('theme',JSON.stringify(newTheme));
+    localStorage.setItem('theme', JSON.stringify(newTheme));
+
+}
+
+function getFavoriteMovies(id) {
+
+    const movies = JSON.parse(localStorage.getItem('favoriteMovies'));
+
+    if(id){
+
+        if( movies.filter( (m) => m.id == id).length) return true;
+
+        return false;
+
+
+    }
+
+    if (movies) return movies;
+
+
+}
+
+function setFavoriteMovies(item) {
+
+    const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies'));
+
+
+    if (favoriteMovies) {
+
+        const movies = [...favoriteMovies];
+        const movie = favoriteMovies.filter((m) => m.id == item.id);
+
+        if(!movie.length){
+
+            movies.push(item);
+            localStorage.setItem('favoriteMovies', JSON.stringify(movies));
+
+        }
+
+        else{
+
+            console.log(movies);
+
+            let index = false;
+            
+            movies.map((movie,position)=>{
+
+                if(movie.id == item.id) index = position;
+    
+
+            })
+
+            movies.splice(index,1);
+            localStorage.setItem('favoriteMovies', JSON.stringify(movies));
+
+
+        }
+
+
+    }
+
+    else {
+
+        const movies = [];
+
+        movies.push(item);
+
+        BsCcCircle
+
+    }
+
+
 
 }
 
 
-export { getData, getDataGenre, getTheme, setThemeLocal };
+export { getData, getDataGenre, getTheme, setThemeLocal, getMovie, getFavoriteMovies, setFavoriteMovies };

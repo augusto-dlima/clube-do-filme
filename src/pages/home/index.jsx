@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import styled from 'styled-components'
-// import { useState, useEffect } from "react";
 import PageConfig from "../../styles/page-config/index.jsx";
 import Card from "../../components/card";
 import {getData} from "../../js/service.js";
@@ -15,7 +13,7 @@ const MovieList = ({ data }) => {
 
     return (
 
-        <PageConfig button={true}>
+        <PageConfig button={true} direction={'center'}>
 
             <Title>Procurando algo para assistir? Confira os últimos lançamentos e descubra novas histórias!</Title>
 
@@ -28,7 +26,7 @@ const MovieList = ({ data }) => {
                     return (
 
 
-                        <Card title={movie.title}  sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                        <Card key={movie.id} id={movie.id} title={movie.title}  sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
 
 
                     )

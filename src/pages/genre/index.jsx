@@ -6,6 +6,7 @@ import Card from "../../components/card";
 import PageConfig from "../../styles/page-config";
 
 
+
 const Genre = (props) => {
 
     const genre = getDataGenre(useParams().id, 'genre')
@@ -16,7 +17,7 @@ const Genre = (props) => {
 
         <DivGenre>
 
-            <PageConfig button={true}>
+            <PageConfig button={true} direction={'center'}>
 
 
                 <Title>Lista de filmes da categoria : {genre.name}</Title>
@@ -30,7 +31,7 @@ const Genre = (props) => {
                         return (
 
 
-                            <Card title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                            <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
 
 
                         )

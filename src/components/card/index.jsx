@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import error from '../../../src/error.jpg'
+import error from '../../../src/error.jpg';
 import { getDataGenre } from "../../js/service.js";
 import { Link } from "react-router-dom";
 
@@ -8,49 +8,51 @@ const Card = (props) => {
 
     return (
 
-        <DivCard>
+        <Link to={`/movie/${props.id}`}>
 
-            <Background>
+            <DivCard>
 
-                <Image src={props.background ? props.background : error} alt={'imagem de fundo do filme'} />
+                <Background>
 
-            </Background>
+                    <Image src={props.background ? props.background : error} alt={'imagem de fundo do filme'} />
 
-            <Information>
+                </Background>
 
-                <Title>{props.title}</Title>
+                <Information>
 
-                <Sinopse>{props.sinopse}</Sinopse>
+                    <Title>{props.title}</Title>
 
-                <Genres>
+                    <Sinopse>{props.sinopse}</Sinopse>
 
-                    {
+                    <Genres>
 
-                        props.genres.map(genre => {
+                        {
 
-                            return (
+                            props.genres.map(genre => {
 
-                                <Link to={`/genre/${genre}`}>
-                                    <p key={genre}>{getDataGenre(genre,'name')}</p>
-                                </Link>
+                                return (
 
-
-                            )
+                                    <p key={genre}>{getDataGenre(genre, 'name')}</p>
 
 
-
-                        })
-
-
-                    }
-
-                </Genres>
+                                )
 
 
-            </Information>
+
+                            })
 
 
-        </DivCard>
+                        }
+
+                    </Genres>
+
+
+                </Information>
+
+
+            </DivCard>
+
+        </Link>
 
 
     )
@@ -88,7 +90,7 @@ text-decoration: none;
 &:hover{
     
 transition: 0.5s ease-in-out;
-color:${(props)=>props.theme.fontAccentColor};
+color:${(props) => props.theme.fontAccentColor};
 
 }
 

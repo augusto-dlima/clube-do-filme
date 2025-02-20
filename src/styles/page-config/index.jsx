@@ -5,51 +5,122 @@ import { getData } from "../../js/service";
 import { themes } from "../../components/context";
 
 
+const PageStart = ({ children,button})=>{
+
+    return(
 
 
-const PageConfig = ({ children,button }) => {
+        <PageConfigStart>
+
+        {
+
+            button &&
+
+            <BtnScrolTop>
+
+                <FaArrowCircleUp onClick={() => {
+
+                    scrollTo(0, 0);
+
+                }} />
 
 
-    return (
-
-        <Page>
-
-            {
-
-                button &&
-
-                <BtnScrolTop>
-
-                    <FaArrowCircleUp onClick={() => {
-
-                        scrollTo(0, 0);
-
-                    }} />
+            </BtnScrolTop>
 
 
-                </BtnScrolTop>
-
-
-            }
+        }
 
 
 
-            {children}
+        {children}
 
-        </Page>
+    </PageConfigStart>
+
 
     )
+}
+
+const PageCenter = ({ children,button})=>{
+
+    return(
+
+
+        <PageConfigCenter>
+
+        {
+
+            button &&
+
+            <BtnScrolTop>
+
+                <FaArrowCircleUp onClick={() => {
+
+                    scrollTo(0, 0);
+
+                }} />
+
+
+            </BtnScrolTop>
+
+
+        }
+
+
+
+        {children}
+
+    </PageConfigCenter>
+
+
+    )
+}
+
+
+
+
+
+
+
+
+const PageConfig = ({ children,button,direction }) => {
+
+    return(
+
+        direction=='start'? <PageStart button={button} children={children} /> : <PageCenter button={button} children={children} />
+
+    )
+
+
 
 }
 
 export default PageConfig
 
-const Page = styled.div`
+const PageConfigCenter = styled.div`
 
 width:100vw;
 min-height:100vh;
 display:flex;
 justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:1rem;
+padding: 6rem 2rem;
+transition: 0.5s ease-in-out;
+background-color: ${(props) => props.theme.backgroundBody};
+color: ${(props) => props.theme.fontColor};
+position: relative;
+z-index:1;
+
+
+`
+
+const PageConfigStart = styled.div`
+
+width:100vw;
+min-height:100vh;
+display:flex;
+justify-content: start;
 align-items:center;
 flex-wrap:wrap;
 gap:1rem;
