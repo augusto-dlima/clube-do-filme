@@ -12,7 +12,9 @@ const FavoriteList = ({ movies }) => {
 
         <PageConfig button={movies.length>=10? true : false} direction={movies.length>=3?'center' : 'start'}>
 
-            <Title>Meus favoritos!</Title>
+            {movies.length>=3? <Title>Minha lista!</Title> : <TitleStart>Minha lista!</TitleStart>}
+
+
 
             {
                 movies.map((movie) => {
@@ -39,15 +41,13 @@ const FavoriteList = ({ movies }) => {
 
 const Favorites = () => {
 
-    const movies = getFavoriteMovies();
-
-    console.log(movies);
+    const movies = getFavoriteMovies(); 
 
     return (
 
         <>
 
-            { movies? <FavoriteList movies={movies} /> : <NotFound />}
+            { movies? <FavoriteList movies={movies} /> : <NotFound title={'Ainda não tem filmes favoritos? Explore nossa seleção e encontre seus novos favoritos!'}/>}
 
         </>
 
@@ -62,7 +62,17 @@ const Title = styled.h1`
 
 width:100vw;
 font-size:2rem;
-padding:2rem 3rem;
+padding:0rem 3rem;
+transition: 0.5s ease-in-out;
+font-family: ${(props) => props.theme.titleList};
+color:${(props) => props.theme.fontColor};
+`
+
+const TitleStart = styled.h1`
+
+width:100vw;
+font-size:2rem;
+padding:0rem;
 transition: 0.5s ease-in-out;
 font-family: ${(props) => props.theme.titleList};
 color:${(props) => props.theme.fontColor};

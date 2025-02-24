@@ -119,6 +119,18 @@ async function getMovies() {
 
 }
 
+async function getTrailer(id){
+
+    
+    let url = `https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`;
+    let response = await fetch(url, options);
+    let json = await response.json();
+
+   return  json.results[0];
+
+
+}
+
 function getMovie(id) {
 
     const movies = JSON.parse(localStorage.getItem('movies'));
@@ -194,7 +206,9 @@ function getFavoriteMovies(id) {
 
         else {
 
-            return movies;
+            if(movies.length>0) return movies;
+
+            return false;
 
         }
 
@@ -264,5 +278,26 @@ function setFavoriteMovies(item) {
 
 }
 
+function getRelatedMovies(idGenre, idMovie){
 
-export { getData, getDataGenre, getTheme, setThemeLocal, getMovie, getFavoriteMovies, setFavoriteMovies };
+
+    const array = getDataGenre(idGenre).movies;
+    let index = false;
+    
+    array.map((m,i)=>{
+        
+      m.id == idMovie? index = i : '';
+        
+    })
+
+    array.splice(index,1);
+    
+    const  relatedMovies = array;
+
+    return relatedMovies;
+    
+    
+}
+
+
+export { getData, getDataGenre, getTheme, setThemeLocal, getMovie, getFavoriteMovies, setFavoriteMovies, getTrailer, getRelatedMovies };

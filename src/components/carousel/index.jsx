@@ -15,7 +15,7 @@ const Carousel = ({ movies }) => {
 
     let perview;
 
-    movies.length >2 ? perview = 3 : perview = movies.length
+    movies.length > 2 ? perview = 3 : perview = movies.length
 
 
 

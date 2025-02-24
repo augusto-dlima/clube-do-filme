@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import { getMovie } from "../../js/service";
+import { IoCloseSharp } from "react-icons/io5";
 import error from '../../../src/not-image.png';
-import PageConfig from "../../styles/page-config";
 import Carousel from "../../components/carousel";
-import { getDataGenre, getFavoriteMovies, setFavoriteMovies } from "../../js/service";
+import { getDataGenre, getFavoriteMovies, setFavoriteMovies, getTrailer, getRelatedMovies } from "../../js/service";
+import NotFound from "../../components/not-found";
 
 
 
@@ -13,27 +14,44 @@ const MovieDetails = () => {
 
     scrollTo(0, 0);
 
-    
-    
     const movie = getMovie(useParams().id);
+    const [validation, setValidation] = useState(getFavoriteMovies(movie.id));
+    const [trailer, setTrailer] = useState(false);
+    const [videosMovie, setVideosMovie] = useState(false);
 
-    console.log(movie)
-    
-    const [validation, setValidation] = useState(getFavoriteMovies(movie.id))
 
-    useEffect(()=>{
+    async function downloadVideos() {
 
+        const response = await getTrailer(movie.id);
+
+        setVideosMovie(response);
+
+    }
+
+
+    useEffect(() => {
 
         setValidation(getFavoriteMovies(movie.id));
-
 
     })
 
 
-    function configButton() {
+    function actions(action) {
 
-        setFavoriteMovies(movie);
-        setValidation(validation?false:true);
+        if (action === 'favorited') {
+
+            setFavoriteMovies(movie);
+            setValidation(validation ? false : true);
+        }
+
+        else {
+
+            downloadVideos();
+            setTrailer(trailer ? false : true);
+
+        }
+
+
 
     }
 
@@ -83,8 +101,8 @@ const MovieDetails = () => {
 
                         <Actions>
 
-                            <Button onClick={() => { configButton() }}>{validation ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</Button>
-                            <Button>Assistir trailer</Button>
+                            <Button onClick={() => { actions('favorited') }}>{validation ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</Button>
+                            <Button onClick={() => { actions() }}>Assistir trailer</Button>
 
 
 
@@ -95,7 +113,7 @@ const MovieDetails = () => {
 
                         <DivCarousel>
 
-                            <Carousel movies={getDataGenre(movie.idGenres[0]).movies} />
+                            <Carousel movies={getRelatedMovies(movie.idGenres[0],movie.id)} />
 
                         </DivCarousel>
 
@@ -105,6 +123,28 @@ const MovieDetails = () => {
 
                 </Details>
 
+                {!trailer ? <TrailerOff></TrailerOff> : <TrailerOn>
+
+
+                    <TrailerDetails>
+
+                        <BtnCloseTrailer>
+
+                            <IoCloseSharp onClick={() => { actions() }} />
+
+                        </BtnCloseTrailer>
+
+                        <Trailer> 
+
+                        {videosMovie?<iframe width="100%" height="700" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound title={'Ops!\nTrailer indisponivel'}/>}
+
+
+                        </Trailer>
+
+                    </TrailerDetails>
+
+
+                </TrailerOn>}
 
             </Movie>
 
@@ -129,20 +169,6 @@ const DivCarousel = styled.div`
 
 width:100%;
 height:100%;
-// background-color:#000;
-
-
-`
-
-const Movies = styled.div`
-
-width:100%;
-margin-top2rem;
-transition:0.5s ease-in-out;
-background-color:${(props) => props.theme.backgroundBody};
-color:${(props) => props.theme.fontColor};
-padding: 5rem 3rem;
-position:relative;
 
 `
 
@@ -201,8 +227,64 @@ color:${(props) => props.theme.fontAccentColor};
 
 `
 
+const TrailerOn = styled.div`
+top:0;
+right:0;
+bottom:0;
+left:0;
+transition: 0.5s ease-in-out;
+background-color:#000;
+opacity:1;
+position:absolute;
+
+display:flex;
+justify-content:center;
+
+`
+
+const TrailerDetails = styled.div`
+
+width:90%;
+transition: 0.5s ease-in-out;
+display:flex;
+flex-direction:column;
+// background-color:red;
+gap:1rem;
+padding:2rem;
+align-items:start;
+
+z-index:10;
+
+svg{
+
+font-size:5rem;
+color:#fff;
+cursor:pointer;
+align-items:center;
+
+}
+
+
+
+`
+
+const BtnCloseTrailer = styled.div`
+
+
+display:flex;
+justify-content:flex-start;
+// background-color:#f1f1f1;
+
+`
+
+const TrailerOff = styled.div`
+
+`
+
 const Trailer = styled.div`
 
+// background-color: ${(props) => props.theme.fontAccentColor};
+width:100%;
 
 
 `
