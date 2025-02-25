@@ -6,52 +6,80 @@ import styled, { keyframes } from "styled-components";
 import { TypeAnimation } from 'react-type-animation';
 
 
-import {getData} from "../../js/service";
+import { getData } from "../../js/service";
 
-const Loading = () => {
+const LoadingSearch = () => {
 
-    const response = getData();
 
     return (
 
-        <PageConfig>
+        <Config>
 
-        <Load>
+            <Load>
 
-            <RiLoader3Line />
+                <RiLoader3Line />
 
-            {
+            </Load>
 
-                !response &&
+        </Config>
 
-                <TypeAnimation
-                    sequence={[
-
-                       'Bem-vindo ao clube do filme!',
-                       3000,                     
-                       
-                       'Na primeira visita, pode demorar um pouco para carregar as informações, mas não se preocupe, depois disso, tudo fica mais rápido!',
-
-                       3000,
-
-                  'Esse projeto é um trabalho de estudo, então, por favor, não hesite em explorar e me dar feedback!',
-
-                       3000,
-            
-            
-                    ]}
-                    speed={30}
-                    style={{ fontSize: '1.5rem' }}
-                    repeat={0}
-                />
+    )
 
 
-            }
+}
+
+const Loading = ({ param }) => {
+
+    const response = true;
+
+    return (
 
 
-        </Load>
+        <>
 
-        </PageConfig>
+            {param === 'search' ? <LoadingSearch /> : <PageConfig>
+
+                <Load>
+
+                    <RiLoader3Line />
+
+                    {
+
+                        !response &&
+
+                        <TypeAnimation
+                            sequence={[
+
+                                'Bem-vindo ao clube do filme!',
+                                3000,
+
+                                'Na primeira visita, pode demorar um pouco para carregar as informações, mas não se preocupe, depois disso, tudo fica mais rápido!',
+
+                                3000,
+
+                                'Esse projeto é um trabalho de estudo, então, por favor, não hesite em explorar e me dar feedback!',
+
+                                3000,
+
+
+                            ]}
+                            speed={30}
+                            style={{ fontSize: '1.5rem' }}
+                            repeat={0}
+                        />
+
+
+                    }
+
+
+                </Load>
+
+            </PageConfig>}
+
+
+        </>
+
+
 
 
     )
@@ -91,6 +119,11 @@ animation: ${rotate} 1s linear infinite;
 
 
 }
+
+`
+
+const Config = styled.div`
+
 
 `
 

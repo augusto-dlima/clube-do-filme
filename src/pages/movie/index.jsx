@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
-import { getMovie } from "../../js/service";
+import { getMovie, setGenreMovies } from "../../js/service";
 import { IoCloseSharp } from "react-icons/io5";
 import error from '../../../src/not-image.png';
 import Carousel from "../../components/carousel";
@@ -12,6 +12,8 @@ import NotFound from "../../components/not-found";
 
 const MovieDetails = () => {
 
+    setGenreMovies();
+    
     scrollTo(0, 0);
 
     const movie = getMovie(useParams().id);
@@ -113,7 +115,7 @@ const MovieDetails = () => {
 
                         <DivCarousel>
 
-                            <Carousel movies={getRelatedMovies(movie.idGenres[0],movie.id)} />
+                            <Carousel movies={getRelatedMovies(movie.idGenres[0], movie.id)} />
 
                         </DivCarousel>
 
@@ -134,9 +136,9 @@ const MovieDetails = () => {
 
                         </BtnCloseTrailer>
 
-                        <Trailer> 
+                        <Trailer>
 
-                        {videosMovie?<iframe width="100%" height="700" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound title={'Ops!\nTrailer indisponivel'}/>}
+                            {videosMovie ? <iframe width="100%" height="700" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound title={'Ops!\nTrailer indisponivel'} />}
 
 
                         </Trailer>

@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "../../components/load";
 import PageConfig from "../../styles/page-config";
-import { getData } from "../../js/service";
+import { setGenreMovies, getDataGenres } from "../../js/service";
 import styled from 'styled-components'
 import Carousel from "../../components/carousel";
 
@@ -45,8 +45,12 @@ const GenreList = ({ genres }) => {
 
 const Genres = () => {
 
-    const { genres } = getData();
 
+    setGenreMovies();
+
+    const genres = getDataGenres();
+
+    console.log(genres);
 
     return (
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getDataGenre } from "../../js/service";
+import { getDataGenre, setGenreMovies } from "../../js/service";
 import styled from "styled-components";
 import Card from "../../components/card";
 import PageConfig from "../../styles/page-config";
@@ -9,7 +9,11 @@ import PageConfig from "../../styles/page-config";
 
 const Genre = (props) => {
 
+    setGenreMovies();
+    
     const genre = getDataGenre(useParams().id, 'genre')
+
+    console.log(genre);
 
     scrollTo(0,0);
 

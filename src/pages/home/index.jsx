@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PageConfig from "../../styles/page-config/index.jsx";
 import Card from "../../components/card";
-import {getData} from "../../js/service.js";
+import { getMovies, getData } from "../../js/service.js";
 import Loading from "../../components/load";
 import styled from "styled-components";
 
 
 const MovieList = ({ data }) => {
-
-    scrollTo(0,0);
-
 
     return (
 
@@ -19,14 +16,13 @@ const MovieList = ({ data }) => {
 
             {
 
-                data.movies.map((movie) => {
+                data.map((movie) => {
 
-                
 
                     return (
 
 
-                        <Card key={movie.id} id={movie.id} title={movie.title}  sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
 
 
                     )
@@ -43,31 +39,37 @@ const MovieList = ({ data }) => {
 
 const Home = () => {
 
-    scrollTo(0,0);
+    const [dataMovies, setDataMovies] = useState(false);
+    
+    async function getDataMovies() {
 
+        if(dataMovies === false){
 
-    const [dataMovies, setDataMovies] = useState('')
-
-    useEffect(() => {
-
-        let response = '';
-
-        function GetStop() {
-
-            clearInterval(getMovies);
+            setDataMovies(await getMovies());
 
         }
 
-        const getMovies = setInterval(() => {
+        else{
 
-            response = getData();
-            response ? setDataMovies(response) : '';
-            response ? GetStop() : '';
+            const response =  await getMovies('set');
+            
+            if(dataMovies.length < response.length){
+                setDataMovies(response);
+                
+            }
 
-        }, 3000);
+
+        }
 
 
-    }, [])
+        }
+
+    useEffect(() => {
+
+        getDataMovies();
+
+
+    },[dataMovies])
 
 
     return (
@@ -76,7 +78,7 @@ const Home = () => {
         <>
 
 
-                {dataMovies ? <MovieList data={dataMovies} /> : <Loading />}
+            {dataMovies? <MovieList data={dataMovies} /> : <Loading />}
 
 
         </>
@@ -92,8 +94,8 @@ width:100vw;
 padding: 0 3rem;
 font-size:1.7rem;
 transition: 0.5s ease-in-out;
-font-family: ${(props)=>props.theme.titleList};
-color:${(props)=>props.theme.fontColor};
+font-family: ${(props) => props.theme.titleList};
+color:${(props) => props.theme.fontColor};
 margin-bottom:5rem;
 `
 

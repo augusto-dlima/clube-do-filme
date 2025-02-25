@@ -142,7 +142,7 @@ transition: 0.5s ease-in-out;
 color: #fff;
 background-color:${(props)=>props.theme.fontAccentColor};
 border-radius:0.5rem;
-box-shadow:1px 1px 1px 1px #fff;
+// box-shadow:1px 1px 1px 1px #fff;
 
 }
 

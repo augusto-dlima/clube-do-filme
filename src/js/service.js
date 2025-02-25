@@ -12,40 +12,71 @@ const options = {
 let genres = [];
 
 
+// function getData() {
+
+
+//     let genreList = JSON.parse(localStorage.getItem('genres'));
+//     let movieList = JSON.parse(localStorage.getItem('movies'));
+
+
+//     if (genreList) {
+
+//         if (movieList) {
+
+
+//             if (genreList[0].movies.length == 0) { setGenreMovies(genreList, movieList); }
+
+//             else {
+
+//                 return { genres: genreList, movies: movieList }
+
+//             }
+
+
+
+//         }
+//         else { getMovies(); }
+//     }
+//     else { getGenres(); }
+
+// }
+
+
+// async function getGenres() {
+
+//     const url = 'https://api.themoviedb.org/3/genre/movie/list?language=pt-BR';
+//     const response = await fetch(url, options);
+//     const json = await response.json();
+
+//     json.genres.map((element) => {
+
+//         const newGenre = { ...genre };
+
+//         newGenre.setData(element.id, element.name);
+
+//         genres.push(newGenre);
+
+//     });
+
+//     localStorage.setItem('genres', JSON.stringify(genres));
+
+//     getData();
+
+// }
+
 function getData() {
 
-
-    let genreList = JSON.parse(localStorage.getItem('genres'));
-    let movieList = JSON.parse(localStorage.getItem('movies'));
-
-
-    if (genreList) {
-
-        if (movieList) {
-
-
-            if (genreList[0].movies.length == 0) { setGenreMovies(genreList, movieList); }
-
-            else {
-
-                return { genres: genreList, movies: movieList }
-
-            }
-
-
-
-        }
-        else { getMovies(); }
-    }
-    else { getGenres(); }
+    return JSON.parse(localStorage.getItem('movies'));
 
 }
+
 
 async function getGenres() {
 
     const url = 'https://api.themoviedb.org/3/genre/movie/list?language=pt-BR';
     const response = await fetch(url, options);
     const json = await response.json();
+    let genres = [];
 
     json.genres.map((element) => {
 
@@ -59,20 +90,32 @@ async function getGenres() {
 
     localStorage.setItem('genres', JSON.stringify(genres));
 
-    getData();
 
 }
 
-async function getMovies() {
+async function getMovies(param) {
+
+    getGenres();
 
     let url = 'https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1';
     let response = await fetch(url, options);
     let json = await response.json();
-    const totalPages = json.total_pages;
+    let totalPages = '';
+
+    let objectMovie = { ...movie };
     let allMovies = [];
     let movies = [];
 
-    for (let index = 1; index <= totalPages; index++) {
+    param === 'set'? totalPages = json.total_pages : totalPages = 10;
+
+
+    function addMovie(movie, element) {
+
+        return movie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average);
+
+    }
+
+    for (let index = 1; index <=totalPages ; index++) {
         url = `https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${index}`
         response = await fetch(url, options);
         json = await response.json();
@@ -81,13 +124,11 @@ async function getMovies() {
 
     allMovies.forEach((element, index) => {
 
-        let objectMovie = { ...movie };
+        objectMovie = { ...movie };
 
         if (index === 0) {
 
-            element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
-
-            element.overview ? movies.push(objectMovie) : '';
+            element.overview ? movies.push(addMovie(objectMovie, element)) : '';
 
         }
 
@@ -97,15 +138,9 @@ async function getMovies() {
 
             if (validation.length <= 0) {
 
-                element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
-
-                element.overview ? movies.push(objectMovie) : '';
-
+                element.overview ? movies.push(addMovie(objectMovie, element)) : '';
 
             }
-
-
-
 
 
         }
@@ -114,19 +149,72 @@ async function getMovies() {
     })
 
     localStorage.setItem('movies', JSON.stringify(movies));
-
-    getData();
+    return movies;
 
 }
 
-async function getTrailer(id){
+// async function getMovies() {
 
-    
+//     let url = 'https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1';
+//     let response = await fetch(url, options);
+//     let json = await response.json();
+//     const totalPages = json.total_pages;
+//     let allMovies = [];
+//     let movies = [];
+
+//     for (let index = 1; index <= totalPages; index++) {
+//         url = `https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${index}`
+//         response = await fetch(url, options);
+//         json = await response.json();
+//         allMovies.push(...json.results);
+//     }
+
+//     allMovies.forEach((element, index) => {
+
+//         let objectMovie = { ...movie };
+
+//         if (index === 0) {
+
+//             element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
+
+//             element.overview ? movies.push(objectMovie) : '';
+
+//         }
+
+//         else {
+
+//             const validation = movies.filter((movie) => movie.id === element.id);
+
+//             if (validation.length <= 0) {
+
+//                 element.overview ? objectMovie.setMovie(element.id, element.genre_ids, element.title, element.overview, element.poster_path, element.backdrop_path, element.vote_average) : '';
+
+//                 element.overview ? movies.push(objectMovie) : '';
+
+
+//             }
+
+
+//         }
+
+
+//     })
+
+//     localStorage.setItem('movies', JSON.stringify(movies));
+
+//     getData();
+
+// }
+
+
+async function getTrailer(id) {
+
+
     let url = `https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`;
     let response = await fetch(url, options);
     let json = await response.json();
 
-   return  json.results[0];
+    return json.results[0];
 
 
 }
@@ -140,37 +228,70 @@ function getMovie(id) {
     return movie[0];
 }
 
-function setGenreMovies(genres, movies) {
-    genres.forEach(genre => {
-        movies.forEach(movie => {
-            movie.idGenres.forEach(id => {
-                genre.id == id ? genre.movies.push(movie) : '';
-            })
+// function setGenreMovies(genres, movies) {
+//     genres.forEach(genre => {
+//         movies.forEach(movie => {
+//             movie.idGenres.forEach(id => {
+//                 genre.id == id ? genre.movies.push(movie) : '';
+//             })
 
+//         })
+
+
+//     })
+
+//     localStorage.setItem('genres', JSON.stringify(genres));
+
+//     getData();
+
+
+// }
+
+function setGenreMovies() {
+
+    const genres = JSON.parse(localStorage.getItem('genres'));
+    const movies = JSON.parse(localStorage.getItem('movies'));
+
+    if(genres[0].movies.length === 0){
+
+        genres.forEach(genre => {
+            movies.forEach(movie => {
+                movie.idGenres.forEach(id => {
+                    genre.id == id ? genre.movies.push(movie) : '';
+                })
+    
+            })
+    
+    
         })
 
+    }
 
-    })
 
-    localStorage.setItem('genres', JSON.stringify(genres));
-
-    getData();
-
+ localStorage.setItem('genres', JSON.stringify(genres));
 
 }
 
 function getDataGenre(id, response) {
 
     const genres = JSON.parse(localStorage.getItem('genres'));
+ 
     const genre = genres.filter(genre => genre.id == id);
 
     if (response === 'name') return genre[0].name;
 
     return genre[0];
 
+}
 
+function getDataGenres() {
+
+    const genres = JSON.parse(localStorage.getItem('genres'));
+
+    return genres;
 
 }
+
 
 function getTheme() {
 
@@ -206,7 +327,7 @@ function getFavoriteMovies(id) {
 
         else {
 
-            if(movies.length>0) return movies;
+            if (movies.length > 0) return movies;
 
             return false;
 
@@ -214,7 +335,7 @@ function getFavoriteMovies(id) {
 
     }
 
-    else{
+    else {
 
         return false;
     }
@@ -271,33 +392,37 @@ function setFavoriteMovies(item) {
         localStorage.setItem('favoriteMovies', JSON.stringify(movies));
 
 
-
     }
-
-
 
 }
 
-function getRelatedMovies(idGenre, idMovie){
+function getRelatedMovies(idGenre, idMovie) {
 
 
     const array = getDataGenre(idGenre).movies;
     let index = false;
-    
-    array.map((m,i)=>{
-        
-      m.id == idMovie? index = i : '';
-        
+
+    array.map((m, i) => {
+
+        m.id == idMovie ? index = i : '';
+
     })
 
-    array.splice(index,1);
-    
-    const  relatedMovies = array;
+    array.splice(index, 1);
+
+    const relatedMovies = array;
 
     return relatedMovies;
-    
-    
+
+
+}
+
+function searchMovies(search) {
+
+
+    const url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=pt-BR&page=1';
+
 }
 
 
-export { getData, getDataGenre, getTheme, setThemeLocal, getMovie, getFavoriteMovies, setFavoriteMovies, getTrailer, getRelatedMovies };
+export { getData, getDataGenre, getTheme, setThemeLocal, getMovie, getFavoriteMovies, setFavoriteMovies, getTrailer, getRelatedMovies, searchMovies, getMovies, setGenreMovies, getDataGenres };

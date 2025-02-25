@@ -28,7 +28,8 @@ const Card = (props) => {
 
                         {
 
-                            props.genres.map(genre => {
+
+                            !props.genres ? '' : props.genres.map(genre => {
 
                                 return (
 
