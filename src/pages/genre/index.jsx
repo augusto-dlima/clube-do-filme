@@ -11,9 +11,7 @@ const Genre = (props) => {
 
     setGenreMovies();
     
-    const genre = getDataGenre(useParams().id, 'genre')
-
-    console.log(genre);
+    const genre = getDataGenre(useParams().id, 'genre');
 
     scrollTo(0,0);
 
@@ -24,7 +22,7 @@ const Genre = (props) => {
             <PageConfig button={true} direction={'center'}>
 
 
-                <Title>Lista de filmes da categoria : {genre.name}</Title>
+                <Title>{genre.name}</Title>
 
                 {
 
@@ -35,7 +33,7 @@ const Genre = (props) => {
                         return (
 
 
-                            <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                            <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} favorite={true}/>
 
 
                         )

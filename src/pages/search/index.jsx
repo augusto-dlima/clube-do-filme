@@ -4,6 +4,7 @@ import NotFound from '../../components/not-found'
 import Card from "../../components/card";
 import Loading from "../../components/load"
 import { searchMovies } from "../../js/service";
+import PageConfig from "../../styles/page-config";
 
 import { LuFolderSearch } from "react-icons/lu";
 
@@ -35,19 +36,49 @@ const LoadingMovies = () => {
 
 }
 
+const MovieList = ({ title, movies }) => {
+
+    return (
+
+        <PageConfig button={movies.length>10? true : false}>
+
+            <Title>{`Resultados para: ${title}`}</Title>
+
+            {
+
+                movies.map((movie) => {
+
+
+
+                    return (
+
+
+                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+
+
+                    )
+
+
+                })
+
+            }
+
+        </PageConfig>
+
+    )
+
+
+}
+
 
 
 const Search = () => {
 
-
-    const [screen, setScreen] = useState(false)
+    const [screen, setScreen] = useState('')
 
     useEffect(() => {
 
-
-        setScreen(getMovie());
-
-
+        // console.log(screen)
     })
 
     return (
@@ -58,22 +89,15 @@ const Search = () => {
 
                 <Div>
 
-                    <input id="search" placeholder="O que você está procurando? Digite o título do filme para começar a busca" onKeyUp={()=>{ getMovie() == ''? setScreen('') : ''}}></input>
-                    <button onClick={() => { setScreen(getMovie()) }}>Buscar</button>
+                    <input id="search" placeholder="O que você está procurando? Digite o título do filme para começar a busca" onKeyUp={() => { getinput() == '' ? setScreen('') : setScreen('') }}></input>
+                    <button onClick={() => { getMovie() }}>Buscar</button>
 
                 </Div>
 
                 <DivMovies>
 
-                    <Movies>
-
-
-                        { screen === ''? <Start /> : <LoadingMovies/>}
-
-       
-                    </Movies>
-
-
+    
+                        {screen === '' ? <Start /> : screen.length > 0? <MovieList title={getinput()} movies={screen} /> : <NotFound background={true} title={'Ops! Filme não encontrado'} />}
 
 
                 </DivMovies>
@@ -88,49 +112,43 @@ const Search = () => {
 
     )
 
-    function getMovie() {
-
-        const movie = document.querySelector('#search');
-
-        searchMovies(movie.value);
-        return movie.value;
-
+    async function getMovie() {
+        setScreen(await searchMovies(document.querySelector('#search').value));
     }
 
+    function getinput() { return document.querySelector('#search').value; }
 
 }
 
 const DivMovies = styled.div`
 
 display: flex;
+flex-wrap:wrap;
 width:100%;
+gap:2rem;
 min-height:60vh;
-opacity:0.3;
 justify-content:center;
 align-items:center;
 border-radius:0.5rem;
 transition:0.5s ease-in-out;
-background-color:${(props) => props.theme.fontAccentColor};
 position:relative;
-
-
 
 `
 
 const DivComponents = styled.div`
 
 display: flex;
-width:100%;
+width:80%;
 min-height:60vh;
 justify-content:center;
 align-items:center;
 border-radius:0.5rem;
 transition:0.5s ease-in-out;
-background-color:${(props) => props.theme.fontAccentColor};
+background-color:${(props) => props.theme.backgroundHeader};
 
 svg{
-
-color:#fff;
+    
+color:${(props) => props.theme.fontAccentColor};
 font-size:5rem;
 
 }
@@ -138,25 +156,6 @@ font-size:5rem;
 `
 
 
-
-const Movies = styled.div`
-
-top:0;
-right:0;
-bottom:0;
-left:0;
-opacity:0.9;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:0.5rem;
-transition:0.5s ease-in-out;
-background-color:#000;
-position:absolute;
-
-
-
-`
 
 const Div = styled.div`
 
@@ -213,6 +212,18 @@ background-color: ${(props) => props.theme.backgroundBody};
 color: ${(props) => props.theme.fontColor};
 transition:0.5s ease-in-out;
 align-items:center;
+
+`
+
+const Title = styled.h1`
+
+width:100vw;
+padding: 0 3rem;
+font-size:2rem;
+transition: 0.5s ease-in-out;
+font-family: ${(props) => props.theme.title};
+color:${(props) => props.theme.fontColor};
+margin-bottom:2rem;
 
 `
 

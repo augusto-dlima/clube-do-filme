@@ -1,16 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import Favorite from "../favorite/index.jsx";
 import error from '../../../src/error.jpg';
-import { getDataGenre } from "../../js/service.js";
+import { getDataGenre, getFavoriteMovies } from "../../js/service.js";
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
+
+    const favorite = props.favorite == true ? getFavoriteMovies(props.id) : false;
 
     return (
 
         <Link to={`/movie/${props.id}`}>
 
             <DivCard>
+
+                {favorite === true ? <Favorite /> : ''}
 
                 <Background>
 
@@ -80,6 +85,7 @@ flex-grow:1;
 font-family:${(props) => props.theme.text};
 font-size:1rem;
 display:flex;
+flex-wrap:wrap;
 gap:0.5rem;
 opacity:0;
 
@@ -143,9 +149,9 @@ text-align:left;
 const DivCard = styled.div`
 
 width:28rem;
-max-width: 30rem;
-min-width: 10rem;
 height:16rem;
+max-width:30rem;
+min-width:10rem;
 background-color:#000;
 border-radius:1rem;
 position:relative;
@@ -153,9 +159,42 @@ transition: 0.5 ease-in-out;
 cursor:pointer;
 
 
+  @media screen and (max-width:1440px){
+        width:26rem;
+        min-height:14rem;
+        height:auto; 
+    }
+
+
+  @media screen and (max-width:1200px){
+        width:22rem;    
+         min-height:12rem;    
+        
+        ${Title}{font-size:1.2rem;}
+        ${Genres}{display:none;}
+
+    }
+
+
+  @media screen and (max-width:1024px){
+        width:18rem;
+         min-height:10rem;
+         height:auto;
+          ${Information}{top:5rem;}
+         ${Title}{font-size:1rem;}
+         ${Sinopse}{font-size:0.8rem;}
+
+
+    }
+
+
+
 &:hover{
 
+
+
 ${Information}{
+
 
 
 transition: 1s ease-in-out;
@@ -188,6 +227,9 @@ opacity:1;
 
 
 }
+
+
+
 
 `
 

@@ -7,13 +7,14 @@ import error from '../../../src/not-image.png';
 import Carousel from "../../components/carousel";
 import { getDataGenre, getFavoriteMovies, setFavoriteMovies, getTrailer, getRelatedMovies } from "../../js/service";
 import NotFound from "../../components/not-found";
+import Button from "../../components/button";
 
 
 
 const MovieDetails = () => {
 
     setGenreMovies();
-    
+
     scrollTo(0, 0);
 
     const movie = getMovie(useParams().id);
@@ -73,8 +74,11 @@ const MovieDetails = () => {
 
                         <Title>{movie.title}</Title>
 
-                        <Sinopse>{movie.overView}</Sinopse>
+                        <OverFlow>
 
+                            <Sinopse>{movie.overView}</Sinopse>
+
+                        </OverFlow>
                         <Genres>
 
                             {
@@ -103,21 +107,29 @@ const MovieDetails = () => {
 
                         <Actions>
 
-                            <Button onClick={() => { actions('favorited') }}>{validation ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</Button>
-                            <Button onClick={() => { actions() }}>Assistir trailer</Button>
+                            <Button functions={()=>{actions('favorited')}} title={validation? 'Remover dos favoritos' : 'Adicionar aos favoritos'} />
+                            <Button functions={()=>{actions()}} title={'Assistir trailer'} />
 
 
 
                         </Actions>
 
 
-                        <Title>Filmes relacionados:</Title>
+                        {getRelatedMovies(movie.idGenres[0], movie.id) &&
+                            <>
 
-                        <DivCarousel>
+                                <Title>Filmes relacionados:</Title>
 
-                            <Carousel movies={getRelatedMovies(movie.idGenres[0], movie.id)} />
+                                <DivCarousel>
 
-                        </DivCarousel>
+                                    <Carousel movies={getRelatedMovies(movie.idGenres[0], movie.id)} />
+
+                                </DivCarousel>
+
+                            </>
+
+                        }
+
 
 
                     </Info>
@@ -138,7 +150,7 @@ const MovieDetails = () => {
 
                         <Trailer>
 
-                            {videosMovie ? <iframe width="100%" height="700" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound title={'Ops!\nTrailer indisponivel'} />}
+                            {videosMovie ? <iframe width="100%" height="700" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound param={'default'} title={'Ops!\nTrailer indisponivel'} />}
 
 
                         </Trailer>
@@ -162,8 +174,11 @@ const MovieDetails = () => {
 const Movie = styled.div`
 
 width:100%;
-height:100%;
 position:relative;
+
+::-webkit-scrollbar {
+    width: 0px;
+}
 
 `
 
@@ -171,6 +186,31 @@ const DivCarousel = styled.div`
 
 width:100%;
 height:100%;
+// padding-bottom:2rem;
+
+
+@media screen and (max-width:500px){
+
+padding-bottom:2rem;
+ 
+    }
+
+`
+
+const Title = styled.h1`
+
+width:80%;
+font-size:2rem;
+transition: 0.5s ease-in-out;
+font-family: ${(props) => props.theme.title};
+color:#fff;
+
+@media screen and (max-width:500px){
+
+  font-size:1.5rem;
+  width:80%;
+ 
+    }
 
 `
 
@@ -185,26 +225,51 @@ gap:3rem;
 flex-direction:column;
 justify-content:flex-end;
 position:relative;
+overflow-y:visible;
+
+@media screen and (max-width:1200px){
+
+justify-content:flex-start;
+padding: 2rem 3rem 2rem 3rem;
+}
+
 
 `
 
-const Title = styled.h1`
 
-width:50%;
-font-size:2rem;
-transition: 0.5s ease-in-out;
-font-family: ${(props) => props.theme.title};
-color:#fff;
+
+const OverFlow = styled.div`
+
+width:100%;
+height:20vh;
+display:flex;
+flex-wrap:wrap;
+padding:1rem 0;
+
+@media screen and (max-width:500px){
+
+height:auto;
+    }
 
 `
-
 
 const Sinopse = styled.p`
 
-max-width:100%;
+width:100%;
+height:100%;
 font-family:${(props) => props.theme.text};
 font-size:1.2rem;
 text-align:justify;
+overflow-y:auto;
+line-height:2rem;
+cursor:pointer;
+
+@media screen and (max-width:500px){
+
+  font-size:0.9;
+  overflow-y:hidden;
+    }
+
 
 `
 
@@ -226,6 +291,14 @@ transition: 0.5s ease-in-out;
 color:${(props) => props.theme.fontAccentColor};
 
 }
+
+@media screen and (max-width:500px){
+
+  font-size:1rem;
+
+    }
+
+
 
 `
 
@@ -250,7 +323,6 @@ width:90%;
 transition: 0.5s ease-in-out;
 display:flex;
 flex-direction:column;
-// background-color:red;
 gap:1rem;
 padding:2rem;
 align-items:start;
@@ -275,7 +347,6 @@ const BtnCloseTrailer = styled.div`
 
 display:flex;
 justify-content:flex-start;
-// background-color:#f1f1f1;
 
 `
 
@@ -285,31 +356,37 @@ const TrailerOff = styled.div`
 
 const Trailer = styled.div`
 
-// background-color: ${(props) => props.theme.fontAccentColor};
 width:100%;
 
 
 `
 
-const Button = styled.button`
+// const Button = styled.button`
 
-padding:1rem;
-width:100%;
-background-color: ${(props) => props.theme.backgroundBody};
-font-family:${(props) => props.theme.titleList};
-transition: 0.5s ease-in-out;
-border:none;
-color:${(props) => props.theme.fontColor};
- &:hover{
+// padding: 1rem;
+// width:100%;
+// background-color: ${(props) => props.theme.backgroundBody};
+// font-family:${(props) => props.theme.titleList};
+// transition: 0.5s ease-in-out;
+// border:none;
+// color:${(props) => props.theme.fontColor};
+//  &:hover{
  
- background-color: ${(props) => props.theme.fontAccentColor};
- color:#fff;
- cursor:pointer;
+//  background-color: ${(props) => props.theme.fontAccentColor};
+//  color:#fff;
+//  cursor:pointer;
 
- }
+//  }
+
+//  @media screen and (max-width:500px){
+
+//   width:15rem;
+
+//     }
 
 
-`
+
+// `
 
 const Actions = styled.div`
 
@@ -334,11 +411,21 @@ position:absolute;
 display:flex;
 justify-content:flex-start;
 
+
+@media screen and (max-width:1200px){
+
+overflow-y:auto;
+
+}
+
 `
 
 const Background = styled.div`
 
 background-size:cover;
+width:100%;
+height:100%;
+display:flex;
 opacity:0.7;
 
 `
@@ -346,6 +433,13 @@ opacity:0.7;
 const Image = styled.img`
 
 width:100%;
+
+@media screen and (max-width:1024px){
+
+  width:100%;
+ 
+    }
+
 
 `
 

@@ -36,7 +36,7 @@ const Carousel = ({ movies }) => {
 
                     <SwiperSlide key={movie.id}>
 
-                        <Card  id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                        <Card  id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} favorite={true} />
 
                     </SwiperSlide>
 

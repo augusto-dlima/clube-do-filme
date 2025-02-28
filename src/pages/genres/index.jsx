@@ -18,11 +18,19 @@ const GenreList = ({ genres }) => {
 
                     return (
 
-                        <Section key={genre.id}>
+                        <Section key={genre.id} >
 
-                            <Title>Filmes de {genre.name}</Title>
 
-                            <Carousel movies={genre.movies} />
+                            {genre.movies.length > 0 &&
+
+                                <>
+
+                                    <Title>{genre.name}</Title>
+
+                                    <Carousel movies={genre.movies} />
+                                </>
+
+                            }
 
                         </Section>
 
@@ -31,7 +39,6 @@ const GenreList = ({ genres }) => {
                 })
 
             }
-
 
 
         </PageConfig>
@@ -49,8 +56,6 @@ const Genres = () => {
     setGenreMovies();
 
     const genres = getDataGenres();
-
-    console.log(genres);
 
     return (
 
@@ -81,6 +86,12 @@ const Section = styled.section`
 
 width:100%;
 height:100%;
+
+`
+
+const Container = styled.div`
+
+width:100%;
 
 `
 

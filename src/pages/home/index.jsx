@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageConfig from "../../styles/page-config/index.jsx";
 import Card from "../../components/card";
-import { getMovies, getData } from "../../js/service.js";
+import { getMovies } from "../../js/service.js";
 import Loading from "../../components/load";
 import styled from "styled-components";
 
@@ -22,7 +22,7 @@ const MovieList = ({ data }) => {
                     return (
 
 
-                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} favorite={true} />
 
 
                     )
@@ -40,36 +40,40 @@ const MovieList = ({ data }) => {
 const Home = () => {
 
     const [dataMovies, setDataMovies] = useState(false);
-    
+
     async function getDataMovies() {
 
-        if(dataMovies === false){
+
+        // dataMovies === false? setDataMovies(await getMovies()) : await getMovies('add');
+        // dataMovies? setDataMovies(await getMovies()) : '';
+
+        if (dataMovies === false) {
 
             setDataMovies(await getMovies());
 
         }
 
-        else{
+        else {
 
-            const response =  await getMovies('set');
-            
-            if(dataMovies.length < response.length){
+            const response = await getMovies('add');
+
+            if (dataMovies.length < response.length) {
                 setDataMovies(response);
-                
+
             }
 
 
         }
 
 
-        }
+    }
 
     useEffect(() => {
 
         getDataMovies();
 
 
-    },[dataMovies])
+    }, [dataMovies])
 
 
     return (
@@ -78,7 +82,7 @@ const Home = () => {
         <>
 
 
-            {dataMovies? <MovieList data={dataMovies} /> : <Loading />}
+            {dataMovies ? <MovieList data={dataMovies} /> : <Loading />}
 
 
         </>
@@ -97,6 +101,21 @@ transition: 0.5s ease-in-out;
 font-family: ${(props) => props.theme.titleList};
 color:${(props) => props.theme.fontColor};
 margin-bottom:5rem;
+
+
+
+
+  @media screen and (max-width:1200px){
+        font-size:1.5rem;
+
+    }
+
+
+  @media screen and (max-width:1024px){
+
+  font-size:1.3rem;
+
+    }
 `
 
 export default Home
