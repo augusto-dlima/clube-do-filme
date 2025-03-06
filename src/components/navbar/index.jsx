@@ -29,6 +29,7 @@ const NavMobile = () => {
 
                 <Link to={'/favorites'}>   <Button title={'Favoritos'} functions={()=>{setMenu(false)}} />  </Link>
                 <Link to={'/search'}>   <Button title={'Buscar filme'} functions={()=>{setMenu(false)}} />  </Link>
+                <TogglerTheme />
 
 
             </Menu> : ''}
@@ -43,8 +44,6 @@ const NavMobile = () => {
 const NavBar = () => {
 
     const [width, setWidth] = useState(window.innerWidth);
-
-    console.log(width);
 
     useEffect(() => {
 
@@ -96,7 +95,7 @@ const NavBar = () => {
 
                             <Link to={'/favorites'}>
 
-                                <ListItem>favoritos</ListItem>
+                                <ListItem>Favoritos</ListItem>
 
                             </Link>
 
@@ -246,6 +245,12 @@ padding: 0 1.2rem;
 
     }
 
+      @media screen and (max-width:700px){
+
+  gap:0;
+
+    }
+
 
 
 `
@@ -261,7 +266,8 @@ transition:0.5s ease-in-out;
 color: ${(props) => props.theme.fontAccentColor};
 
 svg{
-
+    
+transition:0.5s ease-in-out;
 font-size:2rem;
 cursor:pointer;
 

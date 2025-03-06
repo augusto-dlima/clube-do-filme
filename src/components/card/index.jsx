@@ -1,64 +1,117 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Favorite from "../favorite/index.jsx";
 import error from '../../../src/error.jpg';
 import { getDataGenre, getFavoriteMovies } from "../../js/service.js";
 import { Link } from "react-router-dom";
 
-const Card = (props) => {
+const CardMobile = (props) => {
 
     const favorite = props.favorite == true ? getFavoriteMovies(props.id) : false;
 
     return (
 
-        <Link to={`/movie/${props.id}`}>
+        <>
 
-            <DivCard>
+            <Link to={`/movie/${props.id}`}>
 
-                {favorite === true ? <Favorite /> : ''}
+                <DivCardMobile>
 
-                <Background>
+                    {favorite === true ? <Favorite /> : ''}
 
-                    <Image src={props.background ? props.background : error} alt={'imagem de fundo do filme'} />
+                    <Image src={props.poster ? props.poster : error} alt={'imagem de fundo do filme'} />
 
-                </Background>
-
-                <Information>
-
-                    <Title>{props.title}</Title>
-
-                    <Sinopse>{props.sinopse}</Sinopse>
-
-                    <Genres>
-
-                        {
+                </DivCardMobile>
 
 
-                            !props.genres ? '' : props.genres.map(genre => {
+            </Link>
 
-                                return (
-
-                                    <p key={genre}>{getDataGenre(genre, 'name')}</p>
+        </>
 
 
-                                )
+    )
+}
+
+const Card = (props) => {
+
+
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize)
+
+    }, [])
+
+
+    const favorite = props.favorite == true ? getFavoriteMovies(props.id) : false;
+
+    return (
+
+        <>
+
+            {
+
+                width <= 700 ? <CardMobile id={props.id} poster={props.poster} favorite={true}  /> : <Link to={`/movie/${props.id}`}>
+
+                    <DivCard>
+
+                        {favorite === true ? <Favorite /> : ''}
+
+                        <Background>
+
+                            <Image src={props.background ? props.background : error} alt={'imagem de fundo do filme'} />
+
+                        </Background>
+
+                        <Information>
+
+                            <Title>{props.title}</Title>
+
+                            <Sinopse>{props.sinopse}</Sinopse>
+
+                            <Genres>
+
+                                {
+
+
+                                    !props.genres ? '' : props.genres.map(genre => {
+
+                                        return (
+
+                                            <p key={genre}>{getDataGenre(genre, 'name')}</p>
+
+
+                                        )
 
 
 
-                            })
+                                    })
 
 
-                        }
+                                }
 
-                    </Genres>
-
-
-                </Information>
+                            </Genres>
 
 
-            </DivCard>
+                        </Information>
 
-        </Link>
+
+                    </DivCard>
+
+                </Link>
+
+
+            }
+
+        </>
+
 
 
     )
@@ -166,20 +219,11 @@ cursor:pointer;
     }
 
 
-  @media screen and (max-width:1200px){
-        width:22rem;    
-         min-height:12rem;    
-        
-        ${Title}{font-size:1.2rem;}
-        ${Genres}{display:none;}
-
-    }
-
-
-  @media screen and (max-width:1024px){
+  @media screen and (max-width:1400px){
         width:18rem;
          min-height:10rem;
          height:auto;
+           ${Genres}{display:none;}
           ${Information}{top:5rem;}
          ${Title}{font-size:1rem;}
          ${Sinopse}{font-size:0.8rem;}
@@ -246,6 +290,25 @@ const Image = styled.img`
 
 width:100%;
 border-radius:1rem;
+
+`
+
+const DivCardMobile = styled.div`
+
+width:12rem;
+height:18rem;
+background-color:#000;
+border-radius:1rem;
+position:relative;
+transition: 0.5 ease-in-out;
+cursor:pointer;
+
+img{
+
+width:100%;
+height:100%;
+
+}
 
 `
 

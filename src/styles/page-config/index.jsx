@@ -5,71 +5,71 @@ import { getData } from "../../js/service";
 import { themes } from "../../components/context";
 
 
-const PageStart = ({ children,button})=>{
+const PageStart = ({ children, button }) => {
 
-    return(
+    return (
 
 
         <PageConfigStart>
 
-        {
+            {
 
-            button &&
+                button &&
 
-            <BtnScrolTop>
+                <BtnScrolTop>
 
-                <FaArrowCircleUp onClick={() => {
+                    <FaArrowCircleUp onClick={() => {
 
-                    scrollTo(0, 0);
+                        scrollTo(0, 0);
 
-                }} />
-
-
-            </BtnScrolTop>
+                    }} />
 
 
-        }
+                </BtnScrolTop>
+
+
+            }
 
 
 
-        {children}
+            {children}
 
-    </PageConfigStart>
+        </PageConfigStart>
 
 
     )
 }
 
-const PageCenter = ({ children,button})=>{
+const PageCenter = ({ children, button }) => {
 
-    return(
+    return (
 
 
         <PageConfigCenter>
 
-        {
+            {
 
-            button &&
+                button &&
 
-            <BtnScrolTop>
+                <BtnScrolTop>
 
-                <FaArrowCircleUp onClick={() => {
+                    <FaArrowCircleUp onClick={() => {
 
-                    scrollTo(0, 0);
+                        scrollTo(0, 0);
 
-                }} />
-
-
-            </BtnScrolTop>
+                    }} />
 
 
-        }
+                </BtnScrolTop>
+
+
+            }
 
 
 
-        {children}
+            {children}
 
-    </PageConfigCenter>
+        </PageConfigCenter>
 
 
     )
@@ -82,11 +82,11 @@ const PageCenter = ({ children,button})=>{
 
 
 
-const PageConfig = ({ children,button,direction }) => {
+const PageConfig = ({ children, button, direction }) => {
 
-    return(
+    return (
 
-        direction=='start'? <PageStart button={button} children={children} /> : <PageCenter button={button} children={children} />
+        direction == 'start' ? <PageStart button={button} children={children} /> : <PageCenter button={button} children={children} />
 
     )
 
@@ -111,6 +111,13 @@ background-color: ${(props) => props.theme.backgroundBody};
 color: ${(props) => props.theme.fontColor};
 position: relative;
 z-index:1;
+
+  @media screen and (max-width:700px){
+
+        padding: 2rem 0rem;
+        gap:1rem;
+
+    }
 
 
 `
@@ -156,6 +163,12 @@ transition: 0.5s ease-in-out;
 opacity:1;
 
 }
+
+@media screen and (max-width:1024px){
+
+    margin-right:3rem;
+
+    }
 
 
 `

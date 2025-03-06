@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Card from "../card";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,9 +13,61 @@ import 'swiper/css/scrollbar';
 
 const Carousel = ({ movies }) => {
 
-    let perview;
+        const [width, setWidth] = useState(window.innerWidth);
+        let perview = 2;
+        
+    
+        useEffect(() => {
+    
+            const handleResize = () => {
+                setWidth(window.innerWidth);
+            };
+    
+            window.addEventListener('resize', handleResize);
+    
+            return () => window.removeEventListener('resize', handleResize)
+    
+        }, [perview])
 
-    movies.length > 2 ? perview = 3 : perview = movies.length
+
+        if(width<=700)
+        {
+
+            if(width<=500){
+
+                perview = 2;
+            }
+
+            else if(width>=630){
+
+        
+                perview = 3
+
+            }
+
+
+        }
+
+        else if (width>=768 && width<=1024 ){
+
+             width > 990 ? perview = 3 : perview = 2
+
+        }
+
+        else if(width>=1024 && width<=1200 ){
+
+            width >= 1024 && width <= 1200 ? perview = 3: perview = 2  
+
+
+        }
+
+        else if(width>=1200){
+
+            width >= 1200 && width<=1440 ? perview = 3: perview = 3 
+    
+        }
+
+
 
 
 
@@ -36,7 +88,7 @@ const Carousel = ({ movies }) => {
 
                     <SwiperSlide key={movie.id}>
 
-                        <Card  id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} favorite={true} />
+                        <Card  id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} poster={movie.posterPath ? `https://image.tmdb.org/t/p/w500${movie.posterPath}` : ''} favorite={true} />
 
                     </SwiperSlide>
 

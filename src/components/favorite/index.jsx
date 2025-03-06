@@ -28,12 +28,11 @@ transition:0.5s ease-in-out;
 border-radius:100%;
 background-color: ${(props)=>props.theme.backgroundBody};
 z-index:10;
+transition:0.5s ease-in-out;
 
 top:0;
 right:0;
 margin:1rem;
-// bootom:100;
-// left:100;
 
 svg{
     

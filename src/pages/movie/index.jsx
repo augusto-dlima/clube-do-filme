@@ -22,6 +22,20 @@ const MovieDetails = () => {
     const [trailer, setTrailer] = useState(false);
     const [videosMovie, setVideosMovie] = useState(false);
 
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize)
+
+    }, [])
+
 
     async function downloadVideos() {
 
@@ -65,7 +79,9 @@ const MovieDetails = () => {
             <Movie>
 
                 <Background>
-                    <Image src={movie.backdropPath ? `https://image.tmdb.org/t/p/original${movie.backdropPath}` : error} />
+
+                    {width <= 768 ? <Image src={movie.posterPath ? `https://image.tmdb.org/t/p/original${movie.posterPath}` : error} /> : <Image src={movie.backdropPath ? `https://image.tmdb.org/t/p/original${movie.backdropPath}` : error} />}
+
                 </Background>
 
                 <Details>
@@ -107,10 +123,8 @@ const MovieDetails = () => {
 
                         <Actions>
 
-                            <Button functions={()=>{actions('favorited')}} title={validation? 'Remover dos favoritos' : 'Adicionar aos favoritos'} />
-                            <Button functions={()=>{actions()}} title={'Assistir trailer'} />
-
-
+                            <Button functions={() => { actions('favorited') }} title={validation ? 'Remover dos favoritos' : 'Adicionar aos favoritos'} />
+                            <Button functions={() => { actions() }} title={'Assistir trailer'} />
 
                         </Actions>
 
@@ -150,7 +164,7 @@ const MovieDetails = () => {
 
                         <Trailer>
 
-                            {videosMovie ? <iframe width="100%" height="700" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound param={'default'} title={'Ops!\nTrailer indisponivel'} />}
+                            {videosMovie ? <iframe width="100%" height="500" src={`https://www.youtube.com/embed/${videosMovie.key}?`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> : <NotFound param={'default'} title={'Ops!\nTrailer indisponivel'} />}
 
 
                         </Trailer>
@@ -186,14 +200,6 @@ const DivCarousel = styled.div`
 
 width:100%;
 height:100%;
-// padding-bottom:2rem;
-
-
-@media screen and (max-width:500px){
-
-padding-bottom:2rem;
- 
-    }
 
 `
 
@@ -227,11 +233,19 @@ justify-content:flex-end;
 position:relative;
 overflow-y:visible;
 
-@media screen and (max-width:1200px){
+@media screen and (min-width:500px){
+
+gap:1.5rem;
+}
+
+
+@media screen and (min-width:769px){
 
 justify-content:flex-start;
-padding: 2rem 3rem 2rem 3rem;
+padding: 10rem 3rem 2rem 3rem;
+gap:4rem;
 }
+
 
 
 `
@@ -248,7 +262,8 @@ padding:1rem 0;
 
 @media screen and (max-width:500px){
 
-height:auto;
+height:20vh;
+
     }
 
 `
@@ -266,8 +281,9 @@ cursor:pointer;
 
 @media screen and (max-width:500px){
 
-  font-size:0.9;
-  overflow-y:hidden;
+  font-size:0.9rem;
+  line-height:1.5rem;
+//   overflow-y:hidden;
     }
 
 
@@ -361,39 +377,19 @@ width:100%;
 
 `
 
-// const Button = styled.button`
-
-// padding: 1rem;
-// width:100%;
-// background-color: ${(props) => props.theme.backgroundBody};
-// font-family:${(props) => props.theme.titleList};
-// transition: 0.5s ease-in-out;
-// border:none;
-// color:${(props) => props.theme.fontColor};
-//  &:hover{
- 
-//  background-color: ${(props) => props.theme.fontAccentColor};
-//  color:#fff;
-//  cursor:pointer;
-
-//  }
-
-//  @media screen and (max-width:500px){
-
-//   width:15rem;
-
-//     }
-
-
-
-// `
-
 const Actions = styled.div`
 
 width:50%;
 gap:1rem;
 display:flex;
 position:relative;
+
+@media screen and (max-width:900px){
+
+width:100%;
+
+}
+
 
 `
 
@@ -412,12 +408,6 @@ display:flex;
 justify-content:flex-start;
 
 
-@media screen and (max-width:1200px){
-
-overflow-y:auto;
-
-}
-
 `
 
 const Background = styled.div`
@@ -434,11 +424,55 @@ const Image = styled.img`
 
 width:100%;
 
-@media screen and (max-width:1024px){
 
-  width:100%;
+@media screen and (max-width:700px){
+
+  width:110%;
+  
  
     }
+
+@media screen and (min-width:769px){
+
+  width:230%;
+  
+ 
+    }
+
+ @media screen and (min-width:815px){
+
+  width:220%;
+   
+ 
+    }
+
+
+
+ @media screen and (min-width:1200px){
+
+  width:150%;
+ 
+    }
+@media screen and (min-width:1024px){
+
+  width:170%;
+ 
+    }
+
+ @media screen and (max-width:500px){
+
+  width:110%;
+  
+ 
+    }
+
+ @media screen and (min-width:1400px){
+
+  width:120%;
+ 
+    }
+
+
 
 
 `

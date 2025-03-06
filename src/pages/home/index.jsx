@@ -22,7 +22,7 @@ const MovieList = ({ data }) => {
                     return (
 
 
-                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} favorite={true} />
+                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} poster={movie.posterPath ? `https://image.tmdb.org/t/p/w500${movie.posterPath}` : ''} favorite={true} />
 
 
                     )
@@ -42,10 +42,6 @@ const Home = () => {
     const [dataMovies, setDataMovies] = useState(false);
 
     async function getDataMovies() {
-
-
-        // dataMovies === false? setDataMovies(await getMovies()) : await getMovies('add');
-        // dataMovies? setDataMovies(await getMovies()) : '';
 
         if (dataMovies === false) {
 
@@ -113,7 +109,14 @@ margin-bottom:5rem;
 
   @media screen and (max-width:1024px){
 
-  font-size:1.3rem;
+         font-size:1.3rem;
+
+    }
+
+      @media screen and (max-width:700px){
+
+        font-size:1rem;
+        margin-bottom:1rem;
 
     }
 `
