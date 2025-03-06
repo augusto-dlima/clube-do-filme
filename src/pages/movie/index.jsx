@@ -422,55 +422,38 @@ opacity:0.7;
 
 const Image = styled.img`
 
-width:100%;
 
 
-@media screen and (max-width:700px){
+ @media screen and (max-width:500px){
 
   width:110%;
+ 
+    }
+
+
+     @media screen and (min-width:520px){
+
+  width:100%;
   
  
     }
 
-@media screen and (min-width:769px){
+     @media screen and (min-width:769px){
 
   width:230%;
   
  
     }
 
- @media screen and (min-width:815px){
-
-  width:220%;
-   
- 
-    }
-
-
-
- @media screen and (min-width:1200px){
-
-  width:150%;
- 
-    }
-@media screen and (min-width:1024px){
+         @media screen and (min-width:1024px){
 
   width:170%;
- 
-    }
-
- @media screen and (max-width:500px){
-
-  width:110%;
   
  
     }
 
- @media screen and (min-width:1400px){
 
-  width:120%;
- 
-    }
+
 
 
 

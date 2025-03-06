@@ -18,7 +18,7 @@ function App() {
 
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <BrowserRouter>
+        <BrowserRouter basename="/clube-do-filme">
           <NavBar />
           <Router />
         </BrowserRouter>
