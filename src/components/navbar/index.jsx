@@ -86,21 +86,21 @@ const NavBar = () => {
                         <ListNav>
 
 
-                            <Link to={'/clube-do-filme/genres'}>
+                            <Link to={'/genres'}>
 
                                 <ListItem>Categorias</ListItem>
 
                             </Link>
 
 
-                            <Link to={'/clube-do-filme/favorites'}>
+                            <Link to={'/favorites'}>
 
                                 <ListItem>Favoritos</ListItem>
 
                             </Link>
 
 
-                            <Link to={'/clube-do-filme/search'}>
+                            <Link to={'/search'}>
 
                                 <ListItem>Buscar</ListItem>
 

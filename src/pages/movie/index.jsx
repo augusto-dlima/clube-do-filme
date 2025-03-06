@@ -452,6 +452,13 @@ const Image = styled.img`
  
     }
 
+             @media screen and (min-width:1400px){
+
+  width:150%;
+  
+ 
+    }
+
 
 
 

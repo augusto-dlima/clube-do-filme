@@ -19,11 +19,11 @@ const Router = () => {
             <Routes>
 
                 <Route path='/clube-do-filme' element={<Home />} />
-                <Route path='/clube-do-filme/genres' element={<Genres />} />
-                <Route path='/clube-do-filme/genre/:id' element={<Genre />} />
-                <Route path='/clube-do-filme/movie/:id' element={<MovieDetails />} />
-                <Route path='/cluble-do-filme/favorites' element={<Favorites />} />
-                <Route path='/clube-do-filme/search' element={<Search />} />
+                <Route path='/genres' element={<Genres />} />
+                <Route path='/genre/:id' element={<Genre />} />
+                <Route path='/movie/:id' element={<MovieDetails />} />
+                <Route path='/favorites' element={<Favorites />} />
+                <Route path='/search' element={<Search />} />
 
 
             </Routes>

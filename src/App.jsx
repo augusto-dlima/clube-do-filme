@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, HashRouter } from "react-router-dom"
 import Router from "./components/router"
 import NavBar from "./components/navbar"
 import GlobalStyle from "./styles"
@@ -18,10 +18,10 @@ function App() {
 
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <BrowserRouter basename="/clube-do-filme">
+        <HashRouter>
           <NavBar />
           <Router />
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProvider>
 
 
