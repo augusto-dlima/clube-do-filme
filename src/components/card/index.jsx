@@ -13,7 +13,7 @@ const CardMobile = (props) => {
 
         <>
 
-            <Link to={`/movie/${props.id}`}>
+            <Link to={`/clube-do-filme/movie/${props.id}`}>
 
                 <DivCardMobile>
 
@@ -58,7 +58,7 @@ const Card = (props) => {
 
             {
 
-                width <= 700 ? <CardMobile id={props.id} poster={props.poster} favorite={true}  /> : <Link to={`/movie/${props.id}`}>
+                width <= 700 ? <CardMobile id={props.id} poster={props.poster} favorite={true}  /> : <Link to={`/clube-do-filme/movie/${props.id}`}>
 
                     <DivCard>
 
