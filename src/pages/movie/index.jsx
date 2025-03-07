@@ -244,7 +244,17 @@ gap:1.5rem;
 justify-content:flex-start;
 padding: 10rem 3rem 2rem 3rem;
 gap:4rem;
+
 }
+
+@media screen and (min-width:1300px){
+
+justify-content:flex-end;
+padding: 10rem 3rem 2rem 3rem;
+gap:2rem;
+
+}
+
 
 
 
@@ -283,7 +293,6 @@ cursor:pointer;
 
   font-size:0.9rem;
   line-height:1.5rem;
-//   overflow-y:hidden;
     }
 
 
@@ -452,9 +461,17 @@ const Image = styled.img`
  
     }
 
+
+     @media screen and (min-width:1300px){
+
+  width:100%;
+  
+ 
+    }
+
              @media screen and (min-width:1400px){
 
-  width:150%;
+  width:100%;
   
  
     }

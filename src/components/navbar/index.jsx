@@ -63,7 +63,7 @@ const NavBar = () => {
 
 
 
-            <Link to={'/clube-do-filme'}>
+            <Link to={'/'}>
 
                 <Logo>
 

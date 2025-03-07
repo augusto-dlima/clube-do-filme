@@ -18,7 +18,7 @@ const Router = () => {
 
             <Routes>
 
-                <Route path='/clube-do-filme' element={<Home />} />
+                <Route path='/' element={<Home />} />
                 <Route path='/genres' element={<Genres />} />
                 <Route path='/genre/:id' element={<Genre />} />
                 <Route path='/movie/:id' element={<MovieDetails />} />
