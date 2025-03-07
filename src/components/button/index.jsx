@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({title,functions}) =>{
+const Button = ({title,functions,opacity}) =>{
+
 
 return(
 
     <>
 
-    <Btn onClick={()=>{functions()}}>{title}</Btn>
+    {opacity?<Btn style={{opacity:0.7}} onClick={()=>{functions()}}>{title}</Btn> : <Btn onClick={()=>{functions()}}>{title}</Btn>}
     
     
     </>

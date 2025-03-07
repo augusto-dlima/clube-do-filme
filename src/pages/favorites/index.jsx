@@ -64,13 +64,14 @@ width:100vw;
 font-size:2rem;
 padding:0rem 3rem;
 transition: 0.5s ease-in-out;
+text-align:center;
 font-family: ${(props) => props.theme.titleList};
 color:${(props) => props.theme.fontColor};
 
-   @media screen and (max-width:700px){
+   @media screen and (max-width:1024px){
 
-        font-size:1rem;
-        margin-bottom:1rem;
+        font-size:1.5rem;
+        margin-bottom:3rem;
 
     }
 `
@@ -86,7 +87,7 @@ color:${(props) => props.theme.fontColor};
 
    @media screen and (max-width:700px){
 
-        font-size:1rem;
+        font-size:1.5rem;
         margin-bottom:1rem;
 
     }

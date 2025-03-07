@@ -27,8 +27,9 @@ const NavMobile = () => {
                 <IoCloseSharp onClick={() => { setMenu(false) }} />
 
 
-                <Link to={'/favorites'}>   <Button title={'Favoritos'} functions={()=>{setMenu(false)}} />  </Link>
-                <Link to={'/search'}>   <Button title={'Buscar filme'} functions={()=>{setMenu(false)}} />  </Link>
+                <Link to={'/genres'}>   <Button title={'Categorias'} functions={()=>{setMenu(false)}} opacity={true} />  </Link>
+                <Link to={'/favorites'}>   <Button title={'Favoritos'} functions={()=>{setMenu(false)}} opacity={true} />  </Link>
+                <Link to={'/search'}>   <Button title={'Buscar filme'} functions={()=>{setMenu(false)}} opacity={true} />  </Link>
                 <TogglerTheme />
 
 
@@ -284,13 +285,15 @@ left:0;
 z-index:100;
 transition:0.5s ease-in-out;
 
-background-color: ${(props) => props.theme.backgroundMobile};
 position:fixed;
 padding:2rem;
 
 display:flex;
 flex-direction:column;
 gap: 1rem;
+background-image: url('https://image.tmdb.org/t/p/w500/uP46DujkD3nwcisOjz9a0Xw0Knj.jpg');
+background-repeat:no-repeat;
+background-size:cover;
 
 svg{
 
@@ -300,6 +303,7 @@ color: ${(props) => props.theme.fontAccentColor};
 margin-bottom:5rem;
 
 }
+
 
 `
 

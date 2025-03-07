@@ -114,7 +114,14 @@ z-index:1;
 
   @media screen and (max-width:700px){
 
-        padding: 2rem 0rem;
+        padding: 2rem 1rem;
+        gap:1rem;
+
+    }
+
+      @media screen and (max-width:500px){
+
+        padding: 2rem 1rem;
         gap:1rem;
 
     }

@@ -9,6 +9,8 @@ import { getDataGenre, getFavoriteMovies, setFavoriteMovies, getTrailer, getRela
 import NotFound from "../../components/not-found";
 import Button from "../../components/button";
 
+import Title from "../../components/text/title";
+
 
 
 const MovieDetails = () => {
@@ -88,7 +90,7 @@ const MovieDetails = () => {
 
                     <Info>
 
-                        <Title>{movie.title}</Title>
+                        <Title section={'movie'}>{movie.title}</Title>
 
                         <OverFlow>
 
@@ -132,7 +134,7 @@ const MovieDetails = () => {
                         {getRelatedMovies(movie.idGenres[0], movie.id) &&
                             <>
 
-                                <Title>Filmes relacionados:</Title>
+                                <Title section={'movie'}>Filmes relacionados:</Title>
 
                                 <DivCarousel>
 
@@ -203,22 +205,6 @@ height:100%;
 
 `
 
-const Title = styled.h1`
-
-width:80%;
-font-size:2rem;
-transition: 0.5s ease-in-out;
-font-family: ${(props) => props.theme.title};
-color:#fff;
-
-@media screen and (max-width:500px){
-
-  font-size:1.5rem;
-  width:80%;
- 
-    }
-
-`
 
 const Info = styled.div`
 
@@ -227,33 +213,72 @@ height:100%;
 padding: 15rem 3rem 2rem 3rem;
 color:#fff;
 display:flex;
-gap:3rem;
+gap:2rem;
 flex-direction:column;
 justify-content:flex-end;
 position:relative;
 overflow-y:visible;
 
-@media screen and (min-width:500px){
 
-gap:1.5rem;
+@media screen and (max-width:1300px){
+
+justify-content:flex-end;
+padding: 5rem 3rem 2rem 3rem;
+gap:2rem;
+
+}
+
+@media screen and (max-width:1200px){
+
+justify-content:flex-end;
+padding: 5rem 3rem 2rem 3rem;
+gap:1rem;
+
 }
 
 
-@media screen and (min-width:769px){
+
+@media screen and (max-width:1024px){
+
+justify-content:flex-end;
+padding: 5rem 3rem 2rem 3rem;
+gap:2rem;
+
+}
+
+
+@media screen and (max-width:922px){
 
 justify-content:flex-start;
-padding: 10rem 3rem 2rem 3rem;
+padding: 3rem 3rem 2rem 3rem;
+gap:1rem;
+
+}
+
+
+
+@media screen and (max-width:769px){
+
+justify-content:flex-start;
+padding: 7rem 3rem 2rem 3rem;
 gap:4rem;
 
 }
 
-@media screen and (min-width:1300px){
+@media screen and (max-width:630px){
 
-justify-content:flex-end;
-padding: 10rem 3rem 2rem 3rem;
+justify-content:flex-start;
+padding: 7rem 3rem 2rem 3rem;
 gap:2rem;
 
 }
+
+@media screen and (max-width:500px){
+padding: 2rem 3rem 2rem 3rem;
+gap:1.5rem;
+}
+
+
 
 
 
@@ -269,6 +294,12 @@ height:20vh;
 display:flex;
 flex-wrap:wrap;
 padding:1rem 0;
+
+@media screen and (max-width:768px){
+
+height:30vh;
+
+    }
 
 @media screen and (max-width:500px){
 
@@ -288,6 +319,12 @@ text-align:justify;
 overflow-y:auto;
 line-height:2rem;
 cursor:pointer;
+
+@media screen and (max-width:700px){
+
+  font-size:1rem;
+  line-height:1.5rem;
+    }
 
 @media screen and (max-width:500px){
 
@@ -431,53 +468,55 @@ opacity:0.7;
 
 const Image = styled.img`
 
+width:100%;
 
+
+    @media screen and (max-width:1400px){
+
+  width:100%;
+  
+ 
+    }
+
+
+
+     @media screen and (max-width:1300px){
+
+  width:110%;
+  
+ 
+    }
+
+
+
+  @media screen and (max-width:1024px){
+
+  width:160%;
+  
+ 
+    }
+
+
+ @media screen and (max-width:769px){
+
+  width:120%;
+  
+ 
+    }
+
+
+     @media screen and (max-width:520px){
+
+  width:120%;
+  
+ 
+    }
 
  @media screen and (max-width:500px){
 
   width:110%;
  
     }
-
-
-     @media screen and (min-width:520px){
-
-  width:100%;
-  
- 
-    }
-
-     @media screen and (min-width:769px){
-
-  width:230%;
-  
- 
-    }
-
-         @media screen and (min-width:1024px){
-
-  width:170%;
-  
- 
-    }
-
-
-     @media screen and (min-width:1300px){
-
-  width:100%;
-  
- 
-    }
-
-             @media screen and (min-width:1400px){
-
-  width:100%;
-  
- 
-    }
-
-
-
 
 
 

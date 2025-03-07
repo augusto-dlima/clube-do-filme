@@ -53,7 +53,7 @@ const MovieList = ({ title, movies }) => {
                     return (
 
 
-                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} />
+                        <Card key={movie.id} id={movie.id} title={movie.title} sinopse={movie.overView} genres={movie.idGenres} background={movie.backdropPath ? `https://image.tmdb.org/t/p/w500${movie.backdropPath}` : ''} poster={movie.posterPath ? `https://image.tmdb.org/t/p/w500${movie.posterPath}` : ''} />
 
 
                     )
@@ -78,7 +78,6 @@ const Search = () => {
 
     useEffect(() => {
 
-        // console.log(screen)
     })
 
     return (
@@ -89,7 +88,7 @@ const Search = () => {
 
                 <Div>
 
-                    <input id="search" placeholder="O que você está procurando? Digite o título do filme para começar a busca" onKeyUp={() => { getinput() == '' ? setScreen('') : setScreen('') }}></input>
+                    <input id="search" placeholder="O que você está procurando?" onKeyUp={() => { getinput() == '' ? setScreen('') : setScreen('') }}></input>
                     <button onClick={() => { getMovie() }}>Buscar</button>
 
                 </Div>
@@ -138,13 +137,22 @@ position:relative;
 const DivComponents = styled.div`
 
 display: flex;
-width:80%;
+width:99%;
 min-height:60vh;
 justify-content:center;
 align-items:center;
 border-radius:0.5rem;
 transition:0.5s ease-in-out;
-background-color:${(props) => props.theme.backgroundHeader};
+// background-color:${(props) => props.theme.backgroundHeader};
+
+@media screen and (max-width:1200px){
+    
+width:100%;
+background-color:${(props) => props.theme.backgroundBody};
+ 
+
+    }
+
 
 svg{
     
@@ -166,7 +174,7 @@ justify-content:center;
 
 input{
     
-width:50%;
+width:90%;
 height:3rem;
 text-align:center;
 font-size:1rem;
@@ -180,6 +188,17 @@ border:none;
 border:3px solid ${(props) => props.theme.fontAccentColor};
 color:#757575;
 }
+
+
+
+@media screen and (max-width:1200px){
+    
+        width:70%;
+        font-size:1rem;
+
+    }
+
+
 
 }
 
@@ -213,6 +232,12 @@ color: ${(props) => props.theme.fontColor};
 transition:0.5s ease-in-out;
 align-items:center;
 
+@media screen and (max-width:700px){
+    
+        padding: 1rem 0;
+
+    }
+
 `
 
 const Title = styled.h1`
@@ -224,6 +249,15 @@ transition: 0.5s ease-in-out;
 font-family: ${(props) => props.theme.title};
 color:${(props) => props.theme.fontColor};
 margin-bottom:2rem;
+text-align:center;
+
+
+@media screen and (max-width:700px){
+    
+font-size:1.5rem;
+
+    }
+
 
 `
 

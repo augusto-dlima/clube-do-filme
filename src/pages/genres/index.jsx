@@ -89,10 +89,5 @@ height:100%;
 
 `
 
-const Container = styled.div`
-
-width:100%;
-
-`
 
 export default Genres

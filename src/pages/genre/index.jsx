@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Card from "../../components/card";
 import PageConfig from "../../styles/page-config";
 
+import Title from "../../components/text/title";
+
 
 
 const Genre = (props) => {
@@ -22,7 +24,7 @@ const Genre = (props) => {
             <PageConfig button={true} direction={'center'}>
 
 
-                <Title>{genre.name}</Title>
+                <Title section={'page'}>{genre.name}</Title>
 
                 {
 
@@ -54,17 +56,17 @@ const Genre = (props) => {
 
 }
 
-const Title = styled.h1`
+// const Title = styled.h1`
 
-width:100vw;
-padding: 0 3rem;
-font-size:2rem;
-transition: 0.5s ease-in-out;
-font-family: ${(props) => props.theme.title};
-color:${(props) => props.theme.fontColor};
-margin-bottom:2rem;
+// width:100vw;
+// padding: 0 3rem;
+// font-size:2rem;
+// transition: 0.5s ease-in-out;
+// font-family: ${(props) => props.theme.title};
+// color:${(props) => props.theme.fontColor};
+// margin-bottom:2rem;
 
-`
+// `
 
 const DivGenre = styled.div`
 

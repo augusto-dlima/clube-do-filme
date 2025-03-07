@@ -41,8 +41,11 @@ const DivTwo = ({ children }) => {
 
 const NotFound = ({ title, background }) => {
 
+    console.log(background);
+    
     const tag = background ? 'NotFound' : 'NotFoundTwo';
-
+    
+    console.log(background);
 
     return (
 
@@ -98,6 +101,7 @@ z-index:2;
 
 }
 
+
 `
 
 const NotfoundTwo = styled.div`
@@ -111,13 +115,12 @@ justify-content:center;
 align-items:center;
 border-radius:0.5rem;
 transition:0.5s ease-in-out;
-background-color:${(props) => props.theme.backgroundHeader};
+background-color:${(props) => props.theme.backgroundBody};
 
 svg{
     
 color:${(props) => props.theme.fontAccentColor};
 font-size:5rem;
-// margin-bottom:1rem;
 
 }
 
@@ -138,7 +141,7 @@ opacity:0.9;
 const BackgroundTwo = styled.div`
 
 position:absolute;
-background-color: ${(props) => props.theme.BackgroundHeader};
+// background-color: ${(props) => props.theme.BackgroundBody};
 top:0;
 right:0;
 bottom:0;
@@ -152,10 +155,17 @@ max-width:35rem;
 font-size:1.5rem;
 transition: 0.5s ease-in-out;
 font-family: ${(props) => props.theme.title};
-color:#fff;
+color: #fff;
 margin-bottom:5rem;
 text-align:justify; 
-z-index:2;
+z-index:1;
+
+
+@media screen and (max-width:700px){
+    
+font-size:1rem;
+
+    }
 `
 
 export default NotFound

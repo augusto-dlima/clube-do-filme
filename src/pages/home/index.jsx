@@ -5,6 +5,8 @@ import { getMovies } from "../../js/service.js";
 import Loading from "../../components/load";
 import styled from "styled-components";
 
+import Title from "../../components/text/title"
+
 
 const MovieList = ({ data }) => {
 
@@ -12,7 +14,7 @@ const MovieList = ({ data }) => {
 
         <PageConfig button={true} direction={'center'}>
 
-            <Title>Procurando algo para assistir? Confira os últimos lançamentos e descubra novas histórias!</Title>
+            <Title section={'page'}>Procurando algo para assistir? Confira os últimos lançamentos e descubra novas histórias!</Title>
 
             {
 
@@ -88,37 +90,36 @@ const Home = () => {
 
 }
 
-const Title = styled.h1`
+// const Title = styled.h1`
 
-width:100vw;
-padding: 0 3rem;
-font-size:1.7rem;
-transition: 0.5s ease-in-out;
-font-family: ${(props) => props.theme.titleList};
-color:${(props) => props.theme.fontColor};
-margin-bottom:5rem;
-
+// padding: 0 3rem;
+// font-size:1.7rem;
+// transition: 0.5s ease-in-out;
+// font-family: ${(props) => props.theme.titleList};
+// color:${(props) => props.theme.fontColor};
+// margin-bottom:5rem;
 
 
 
-  @media screen and (max-width:1200px){
-        font-size:1.5rem;
 
-    }
+//   @media screen and (max-width:1200px){
+//         font-size:1.5rem;
+
+//     }
 
 
-  @media screen and (max-width:1024px){
+//   @media screen and (max-width:1024px){
 
-         font-size:1.3rem;
+//          font-size:1.3rem;
 
-    }
+//     }
 
-      @media screen and (max-width:700px){
+//       @media screen and (max-width:700px){
 
-        font-size:1rem;
-        margin-bottom:1rem;
+//         font-size:1rem;
+//         margin-bottom:1rem;
 
-    }
-`
+//     }
+// `
 
 export default Home

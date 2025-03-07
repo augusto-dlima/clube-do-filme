@@ -39,7 +39,7 @@ const TogglerTheme = () => {
 
         <>
 
-            {width <= 700 ? <Button title={'Alterar tema'} functions={() => { toggler() }} /> : <Toggler onClick={() => { toggler() }} > {icon == 'light' ? <PiMoonFill /> : <PiSunFill />}</Toggler>}
+            {width <= 700 ? <Button title={'Alterar tema'} functions={() => { toggler() }} opacity={true} /> : <Toggler onClick={() => { toggler() }} > {icon == 'light' ? <PiMoonFill /> : <PiSunFill />}</Toggler>}
 
 
 
